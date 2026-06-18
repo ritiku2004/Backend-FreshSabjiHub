@@ -1,0 +1,4 @@
+2026-06-17T17:41:41.557Z: Error: Can't add new command when connection is in closed state
+    at Object.createOrder (C:\Users\hp\Documents\Hello_World\frreshsabjihub\Backend\src\models\orderModel.js:178:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async createOrder (C:\Users\hp\Documents\Hello_World\frreshsabjihub\Backend\src\controllers\user\orderController.js:28:23)
