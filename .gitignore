@@ -14,8 +14,6 @@ node_modules/
 .env.*
 !.env.example
 
-# Firebase
-firebase-service-account.json
 
 # Build and dist directories
 dist/
