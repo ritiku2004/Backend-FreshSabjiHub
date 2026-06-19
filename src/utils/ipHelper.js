@@ -54,7 +54,7 @@ const getFormattedUrl = (req, fileOrFilename) => {
   
   return formattedUrl;
 };
-
+ 
 module.exports = {
   getLocalIpAddress,
   getFormattedUrl
