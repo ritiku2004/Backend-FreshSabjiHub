@@ -17,11 +17,22 @@ const getUserById = async (id) => {
 
 const createUser = async (userData) => {
   const { email, phone_number, first_name, last_name } = userData;
-  const [result] = await pool.query(
-    'INSERT INTO users (email, phone_number, first_name, last_name) VALUES (?, ?, ?, ?)',
-    [email, phone_number || null, first_name || null, last_name || null]
-  );
-  return result.insertId;
+
+  // Dynamically build INSERT to avoid passing NULL into a formerly NOT NULL column
+  if (phone_number) {
+    const [result] = await pool.query(
+      'INSERT INTO users (email, phone_number, first_name, last_name) VALUES (?, ?, ?, ?)',
+      [email || null, phone_number, first_name || null, last_name || null]
+    );
+    return result.insertId;
+  } else {
+    // Email-only registration (no phone number)
+    const [result] = await pool.query(
+      'INSERT INTO users (email, first_name, last_name) VALUES (?, ?, ?)',
+      [email || null, first_name || null, last_name || null]
+    );
+    return result.insertId;
+  }
 };
 
 const getAllUsers = async () => {

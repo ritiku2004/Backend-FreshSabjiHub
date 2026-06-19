@@ -3,7 +3,7 @@
 -- 1. Users Profile
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    phone_number VARCHAR(20) UNIQUE NOT NULL,
+    phone_number VARCHAR(20) UNIQUE,  -- nullable: users can register with email only
     first_name VARCHAR(100),
     last_name VARCHAR(100),
     email VARCHAR(255) UNIQUE,
