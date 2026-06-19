@@ -47,8 +47,9 @@ app.use((req, res, next) => {
   const originalJson = res.json;
   res.json = function (body) {
     const host = req.get('host');
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
     if (body && typeof body === 'object') {
-      replaceLocalhostInObject(body, host, req.protocol);
+      replaceLocalhostInObject(body, host, protocol);
     }
     return originalJson.call(this, body);
   };

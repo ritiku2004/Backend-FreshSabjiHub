@@ -2,9 +2,11 @@ const pool = require('../config/db');
 
 const getAllProducts = async () => {
   const [rows] = await pool.query(`
-    SELECT p.*, c.name as category_name 
+    SELECT p.*, c.name as category_name, GROUP_CONCAT(pc.category_id) as category_ids
     FROM products p
     JOIN categories c ON p.category_id = c.id
+    LEFT JOIN product_categories pc ON p.id = pc.product_id
+    GROUP BY p.id
     ORDER BY p.created_at DESC
   `);
   return rows;
@@ -38,6 +40,12 @@ const createProduct = async (productData, featuresData = []) => {
     );
     const productId = result.insertId;
 
+    // Sync to product_categories
+    await connection.query(
+      'INSERT INTO product_categories (product_id, category_id) VALUES (?, ?)',
+      [productId, category_id]
+    );
+
     if (featuresData && featuresData.length > 0) {
       const featureValues = featuresData.map(f => [productId, f.feature_name, f.feature_value]);
       await connection.query(
@@ -68,6 +76,12 @@ const updateProduct = async (id, productData, featuresData = null) => {
       'SET category_id=?, name=?, description=?, brand=?, mrp_price=?, quantity=?, quantity_type=?, sku=?, image_url=?, is_active=?, discount_percentage=? ' +
       'WHERE id=?',
       [category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active ?? true, discount_percentage ?? 0.00, id]
+    );
+
+    // Sync to product_categories
+    await connection.query(
+      'INSERT IGNORE INTO product_categories (product_id, category_id) VALUES (?, ?)',
+      [id, category_id]
     );
 
     if (featuresData !== null) {

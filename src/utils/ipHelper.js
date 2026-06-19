@@ -48,7 +48,8 @@ const getFormattedUrl = (req, fileOrFilename) => {
       host = host.replace('localhost', localIp).replace('127.0.0.1', localIp);
     }
     
-    formattedUrl = `${req.protocol}://${host}/uploads/${subDir ? subDir + '/' : ''}${filename}`;
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+    formattedUrl = `${protocol}://${host}/uploads/${subDir ? subDir + '/' : ''}${filename}`;
   }
   
   return formattedUrl;

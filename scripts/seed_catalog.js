@@ -1,5 +1,6 @@
 const pool = require('../src/config/db');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const banners = [
   {
@@ -118,8 +119,8 @@ const seedDB = async () => {
 
           for (const sId of shopIds) {
             await pool.query(
-              `INSERT INTO shop_products (shop_id, product_id, price, stock_quantity) VALUES (?, ?, ?, 100) ON DUPLICATE KEY UPDATE price=VALUES(price)`,
-              [sId, prodId, p.price]
+              `INSERT INTO shop_products (shop_id, product_id, is_available) VALUES (?, ?, true) ON DUPLICATE KEY UPDATE is_available=true`,
+              [sId, prodId]
             );
           }
         }

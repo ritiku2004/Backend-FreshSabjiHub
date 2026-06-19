@@ -1,10 +1,10 @@
-module.paths.push('C:/Users/hp/Documents/Hello_World/frreshsabjihub/Backend/node_modules');
-require('dotenv').config({ path: 'C:/Users/hp/Documents/Hello_World/frreshsabjihub/Backend/.env' });
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
-const pool = require('C:/Users/hp/Documents/Hello_World/frreshsabjihub/Backend/src/config/db');
-const { orderModel } = require('C:/Users/hp/Documents/Hello_World/frreshsabjihub/Backend/src/models');
-const { razorpay } = require('C:/Users/hp/Documents/Hello_World/frreshsabjihub/Backend/src/utils');
-const { notificationService } = require('C:/Users/hp/Documents/Hello_World/frreshsabjihub/Backend/src/services');
+const pool = require('../src/config/db');
+const { orderModel } = require('../src/models');
+const { razorpay } = require('../src/utils');
+const { notificationService } = require('../src/services');
 
 async function reconcile() {
   console.log(`[${new Date().toISOString()}] Starting payment reconciliation job...`);
