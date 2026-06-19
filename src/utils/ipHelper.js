@@ -34,7 +34,7 @@ const getFormattedUrl = (req, fileOrFilename) => {
         }
       }
     }
-  }
+  } 
 
   // Sanitize subDir: strip any starting/trailing slashes
   subDir = subDir.replace(/^\/+|\/+$/g, '');
