@@ -1,8 +1,8 @@
-module.paths.push('C:/Users/hp/Documents/Hello_World/frreshsabjihub/Backend/node_modules');
-require('dotenv').config({ path: 'C:/Users/hp/Documents/Hello_World/frreshsabjihub/Backend/.env' });
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const crypto = require('crypto');
-const pool = require('C:/Users/hp/Documents/Hello_World/frreshsabjihub/Backend/src/config/db');
+const pool = require('../src/config/db');
 
 async function testSchema() {
   console.log('\n=== TESTING SCHEMA INTEGRITY ===');

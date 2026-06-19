@@ -1,17 +1,17 @@
 const pool = require('../config/db');
 
-const saveOtp = async (email, otp, expiresAt) => {
+const saveOtp = async (phoneOrEmail, otp, expiresAt) => {
   const [result] = await pool.query(
-    'INSERT INTO otps (email, otp_code, expires_at) VALUES (?, ?, ?)',
-    [email, otp, expiresAt]
+    'INSERT INTO otps (phone_number, otp_code, expires_at) VALUES (?, ?, ?)',
+    [phoneOrEmail, otp, expiresAt]
   );
   return result.insertId;
 };
 
-const getValidOtp = async (email, otp) => {
+const getValidOtp = async (phoneOrEmail, otp) => {
   const [rows] = await pool.query(
-    'SELECT * FROM otps WHERE email = ? AND otp_code = ? AND is_used = FALSE AND expires_at > NOW() ORDER BY created_at DESC LIMIT 1',
-    [email, otp]
+    'SELECT * FROM otps WHERE phone_number = ? AND otp_code = ? AND is_used = FALSE AND expires_at > UTC_TIMESTAMP() ORDER BY created_at DESC LIMIT 1',
+    [phoneOrEmail, otp]
   );
   return rows[0];
 };

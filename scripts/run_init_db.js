@@ -1,6 +1,6 @@
-require('dotenv').config();
-const fs = require('fs');
 const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+const fs = require('fs');
 const mysql = require('mysql2/promise');
 
 const runInitDb = async () => {
@@ -23,7 +23,7 @@ const runInitDb = async () => {
 
     console.log('✅ Database initialized successfully!');
   } catch (error) {
-    console.error('❌ Failed to initialize database:', error.message);
+    console.error('❌ Failed to initialize database:', error);
   } finally {
     if (connection) {
       await connection.end();

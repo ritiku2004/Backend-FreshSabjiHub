@@ -47,8 +47,9 @@ app.use((req, res, next) => {
   const originalJson = res.json;
   res.json = function (body) {
     const host = req.get('host');
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
     if (body && typeof body === 'object') {
-      replaceLocalhostInObject(body, host, req.protocol);
+      replaceLocalhostInObject(body, host, protocol);
     }
     return originalJson.call(this, body);
   };
@@ -90,6 +91,86 @@ app.use('/api', mainRoutes);
 // Health check route
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Server is running' });
+});
+
+// Diagnostics route
+app.get('/diagnostics', (req, res) => {
+  const info = {
+    cwd: process.cwd(),
+    dirname: __dirname,
+    env: {
+      NODE_ENV: process.env.NODE_ENV,
+      UPLOAD_DIR: process.env.UPLOAD_DIR,
+      BASE_URL: process.env.BASE_URL,
+    },
+  };
+  
+  try {
+    info.ipHelperContent = fs.readFileSync(path.join(__dirname, 'utils/ipHelper.js'), 'utf8');
+  } catch (e) {
+    info.ipHelperError = e.message;
+  }
+  
+  // Try listing different paths to see what is visible
+  try {
+    info.dir_dot = fs.readdirSync('.');
+  } catch (e) {
+    info.dir_dot_err = e.message;
+  }
+  
+  try {
+    info.dir_dotdot = fs.readdirSync('..');
+  } catch (e) {
+    info.dir_dotdot_err = e.message;
+  }
+
+  try {
+    info.dir_dotdotdot = fs.readdirSync('../..');
+  } catch (e) {
+    info.dir_dotdotdot_err = e.message;
+  }
+
+  // Let's test write permissions in parent directories or other known paths
+  const testPaths = [
+    './uploads',
+    '../uploads',
+    '../../uploads',
+    '/home/u807549365/domains/media.freshsabjihub.com/public_html',
+    '/home/u807549365/domains/api.freshsabjihub.com/media',
+    '../media',
+    '../../media'
+  ];
+  
+  info.writeTests = {};
+  for (const p of testPaths) {
+    try {
+      const resolved = path.resolve(p);
+      info.writeTests[p] = {
+        resolved,
+        exists: fs.existsSync(resolved)
+      };
+      if (info.writeTests[p].exists) {
+        // Try writing a small test file
+        const testFile = path.join(resolved, 'test_write.txt');
+        fs.writeFileSync(testFile, 'test');
+        fs.unlinkSync(testFile);
+        info.writeTests[p].writable = true;
+      } else {
+        // Try creating directory
+        fs.mkdirSync(resolved, { recursive: true });
+        const testFile = path.join(resolved, 'test_write.txt');
+        fs.writeFileSync(testFile, 'test');
+        fs.unlinkSync(testFile);
+        // clean up
+        info.writeTests[p].writable = true;
+        info.writeTests[p].created = true;
+      }
+    } catch (e) {
+      info.writeTests[p].error = e.message;
+    }
+  }
+
+  res.status(200).json(info);
 });
 
 // 404 Handler

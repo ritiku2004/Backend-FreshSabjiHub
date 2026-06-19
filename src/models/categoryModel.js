@@ -14,7 +14,8 @@ const getCategoriesByShopId = async (shopId) => {
   const [rows] = await pool.query(`
     SELECT DISTINCT c.*
     FROM categories c
-    JOIN products p ON p.category_id = c.id
+    JOIN product_categories pc ON pc.category_id = c.id
+    JOIN products p ON pc.product_id = p.id
     LEFT JOIN shop_products sp ON sp.product_id = p.id AND sp.shop_id = ?
     WHERE COALESCE(sp.is_available, true) = true AND p.is_active = true
     ORDER BY c.created_at DESC

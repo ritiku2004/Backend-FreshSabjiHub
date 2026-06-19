@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const { userModel, otpModel } = require('../../models');
 const { emailSender } = require('../../utils');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
 
 const generateAndSendOtp = async (email) => {
   // Generate a random 6-digit OTP (123456 for test domains)

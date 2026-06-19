@@ -3,7 +3,7 @@
 -- 1. Users Profile
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    phone_number VARCHAR(20) UNIQUE NOT NULL,
+    phone_number VARCHAR(20) UNIQUE,  -- nullable: users can register with email only
     first_name VARCHAR(100),
     last_name VARCHAR(100),
     email VARCHAR(255) UNIQUE,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
 -- 1.5 OTPs (For Authentication)
 CREATE TABLE IF NOT EXISTS otps (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    phone_number VARCHAR(20) NOT NULL,
+    phone_number VARCHAR(255) NOT NULL,  -- stores phone or email identifier
     otp_code VARCHAR(10) NOT NULL,
     expires_at TIMESTAMP NOT NULL,
     is_used BOOLEAN DEFAULT FALSE,
@@ -68,6 +68,8 @@ CREATE TABLE IF NOT EXISTS products (
     sku VARCHAR(100) UNIQUE, -- Stock Keeping Unit / Barcode
     image_url VARCHAR(500),
     is_active BOOLEAN DEFAULT TRUE,
+    discount_percentage DECIMAL(10, 2) DEFAULT 0.00,
+    stock_quantity INT DEFAULT 100,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
@@ -81,6 +83,15 @@ CREATE TABLE IF NOT EXISTS product_features (
     feature_value VARCHAR(255) NOT NULL,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     UNIQUE KEY unique_product_feature (product_id, feature_name)
+);
+
+-- 4.6 Product Categories (Many-to-Many Relationship)
+CREATE TABLE IF NOT EXISTS product_categories (
+    product_id INT NOT NULL,
+    category_id INT NOT NULL,
+    PRIMARY KEY (product_id, category_id),
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
 
 -- 5. Shops
@@ -177,3 +188,21 @@ CREATE TABLE IF NOT EXISTS order_items (
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE RESTRICT
 );
+
+-- 12. Charges Configuration
+CREATE TABLE IF NOT EXISTS charges_config (
+    id INT PRIMARY KEY,
+    delivery_base_charge DECIMAL(10, 2) NOT NULL DEFAULT 30.00,
+    delivery_distance_rate DECIMAL(10, 2) NOT NULL DEFAULT 5.00,
+    free_delivery_threshold DECIMAL(10, 2) NOT NULL DEFAULT 300.00,
+    handling_fee DECIMAL(10, 2) NOT NULL DEFAULT 15.00,
+    free_handling_threshold DECIMAL(10, 2) NOT NULL DEFAULT 500.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Seed Charges Configuration
+INSERT INTO charges_config (id, delivery_base_charge, delivery_distance_rate, free_delivery_threshold, handling_fee, free_handling_threshold)
+VALUES (1, 30.00, 5.00, 300.00, 15.00, 500.00)
+ON DUPLICATE KEY UPDATE id=id;
+

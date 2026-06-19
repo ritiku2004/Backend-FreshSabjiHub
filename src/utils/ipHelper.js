@@ -23,12 +23,18 @@ const getFormattedUrl = (req, fileOrFilename) => {
     const destination = fileOrFilename.destination;
     if (destination) {
       const normalizedDest = destination.replace(/\\/g, '/');
-      const uploadsIndex = normalizedDest.lastIndexOf('/uploads');
-      if (uploadsIndex !== -1) {
-        subDir = normalizedDest.substring(uploadsIndex + 9); // everything after '/uploads/'
+      const baseDir = (process.env.UPLOAD_DIR || '').replace(/\\/g, '/').replace(/\/+$/, '');
+      
+      if (baseDir && normalizedDest.startsWith(baseDir)) {
+        subDir = normalizedDest.substring(baseDir.length);
+      } else {
+        const uploadsIndex = normalizedDest.lastIndexOf('/uploads');
+        if (uploadsIndex !== -1) {
+          subDir = normalizedDest.substring(uploadsIndex + 9); // everything after '/uploads/'
+        }
       }
     }
-  }
+  } 
 
   // Sanitize subDir: strip any starting/trailing slashes
   subDir = subDir.replace(/^\/+|\/+$/g, '');
@@ -38,7 +44,7 @@ const getFormattedUrl = (req, fileOrFilename) => {
   
   if (baseUrl) {
     const base = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
-    formattedUrl = `${base}/uploads/${subDir ? subDir + '/' : ''}${filename}`;
+    formattedUrl = `${base}/${subDir ? subDir + '/' : ''}${filename}`;
   } else {
     let host = req.get('host'); // e.g. "localhost:3000" or "192.168.1.5:3000"
     
@@ -48,12 +54,13 @@ const getFormattedUrl = (req, fileOrFilename) => {
       host = host.replace('localhost', localIp).replace('127.0.0.1', localIp);
     }
     
-    formattedUrl = `${req.protocol}://${host}/uploads/${subDir ? subDir + '/' : ''}${filename}`;
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+    formattedUrl = `${protocol}://${host}/uploads/${subDir ? subDir + '/' : ''}${filename}`;
   }
   
   return formattedUrl;
 };
-
+ 
 module.exports = {
   getLocalIpAddress,
   getFormattedUrl
