@@ -112,6 +112,16 @@ app.get('/diagnostics-info', (req, res) => {
   } catch (e) {
     info.resolvedUploadDirError = e.message;
   }
+  try {
+    info.domainsContents = fs.readdirSync('/home/u807549365/domains');
+  } catch (e) {
+    info.domainsError = e.message;
+  }
+  try {
+    info.subdomainContents = fs.readdirSync('/home/u807549365/domains/api.freshsabjihub.com');
+  } catch (e) {
+    info.subdomainError = e.message;
+  }
   res.status(200).json(info);
 });
 
