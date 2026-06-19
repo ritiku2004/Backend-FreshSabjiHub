@@ -38,7 +38,7 @@ const getFormattedUrl = (req, fileOrFilename) => {
   
   if (baseUrl) {
     const base = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
-    formattedUrl = `${base}/uploads/${subDir ? subDir + '/' : ''}${filename}`;
+    formattedUrl = `${base}/${subDir ? subDir + '/' : ''}${filename}`;
   } else {
     let host = req.get('host'); // e.g. "localhost:3000" or "192.168.1.5:3000"
     
