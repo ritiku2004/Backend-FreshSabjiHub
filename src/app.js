@@ -85,6 +85,36 @@ function replaceLocalhostInString(str, host, protocol) {
   });
 }
 
+// Temporary Diagnostics Route
+app.get('/diagnostics-info', (req, res) => {
+  const fs = require('fs');
+  const path = require('path');
+  const info = {
+    cwd: process.cwd(),
+    dirname: __dirname,
+    uploadDirEnv: process.env.UPLOAD_DIR,
+    resolvedUploadDir: process.env.UPLOAD_DIR ? path.resolve(process.env.UPLOAD_DIR) : path.join(__dirname, '../uploads'),
+    nodeJsExists: fs.existsSync('/home/u807549365/nodejs'),
+    publicHtmlExists: fs.existsSync('/home/u807549365/public_html'),
+  };
+  try {
+    info.nodeJsContents = fs.readdirSync('/home/u807549365/nodejs');
+  } catch (e) {
+    info.nodeJsError = e.message;
+  }
+  try {
+    info.publicHtmlContents = fs.readdirSync('/home/u807549365/public_html');
+  } catch (e) {
+    info.publicHtmlError = e.message;
+  }
+  try {
+    info.resolvedUploadDirContents = fs.readdirSync(info.resolvedUploadDir);
+  } catch (e) {
+    info.resolvedUploadDirError = e.message;
+  }
+  res.status(200).json(info);
+});
+
 // Routes
 app.use('/api', mainRoutes);
 
