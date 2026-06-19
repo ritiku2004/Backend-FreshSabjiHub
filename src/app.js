@@ -105,6 +105,12 @@ app.get('/diagnostics', (req, res) => {
     },
   };
   
+  try {
+    info.ipHelperContent = fs.readFileSync(path.join(__dirname, 'utils/ipHelper.js'), 'utf8');
+  } catch (e) {
+    info.ipHelperError = e.message;
+  }
+  
   // Try listing different paths to see what is visible
   try {
     info.dir_dot = fs.readdirSync('.');
