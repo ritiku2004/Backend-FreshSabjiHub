@@ -23,9 +23,15 @@ const getFormattedUrl = (req, fileOrFilename) => {
     const destination = fileOrFilename.destination;
     if (destination) {
       const normalizedDest = destination.replace(/\\/g, '/');
-      const uploadsIndex = normalizedDest.lastIndexOf('/uploads');
-      if (uploadsIndex !== -1) {
-        subDir = normalizedDest.substring(uploadsIndex + 9); // everything after '/uploads/'
+      const baseDir = (process.env.UPLOAD_DIR || '').replace(/\\/g, '/').replace(/\/+$/, '');
+      
+      if (baseDir && normalizedDest.startsWith(baseDir)) {
+        subDir = normalizedDest.substring(baseDir.length);
+      } else {
+        const uploadsIndex = normalizedDest.lastIndexOf('/uploads');
+        if (uploadsIndex !== -1) {
+          subDir = normalizedDest.substring(uploadsIndex + 9); // everything after '/uploads/'
+        }
       }
     }
   }
