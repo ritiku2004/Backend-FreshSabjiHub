@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
 -- 1.5 OTPs (For Authentication)
 CREATE TABLE IF NOT EXISTS otps (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    phone_number VARCHAR(20) NOT NULL,
+    phone_number VARCHAR(255) NOT NULL,  -- stores phone or email identifier
     otp_code VARCHAR(10) NOT NULL,
     expires_at TIMESTAMP NOT NULL,
     is_used BOOLEAN DEFAULT FALSE,
