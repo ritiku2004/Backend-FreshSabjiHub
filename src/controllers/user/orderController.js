@@ -44,36 +44,23 @@ const createOrder = async (req, res) => {
     if (isPrepaid) {
       // 2. Generate Razorpay Order
       try {
-        const hasCredentials = process.env.RAZORPAY_KEY_ID && 
-                               process.env.RAZORPAY_KEY_SECRET && 
-                               !process.env.RAZORPAY_KEY_ID.includes('placeholder') &&
-                               !process.env.RAZORPAY_KEY_SECRET.includes('placeholder') &&
-                               process.env.RAZORPAY_KEY_ID !== 'rzp_test_Dq94dK40f8K201';
-        
-        let rzpOrder;
-        const amountPaise = Math.round(orderData.totalAmount * 100);
-
-        if (hasCredentials) {
-          const options = {
-            amount: amountPaise,
-            currency: 'INR',
-            receipt: `receipt_order_${orderData.orderId}`,
-          };
-          rzpOrder = await razorpay.orders.create(options);
-        } else {
-          // Fallback to mock order for development/sandbox testing when credentials are not configured
-          rzpOrder = {
-            id: `order_mock_${Math.random().toString(36).substring(2, 10).toUpperCase()}`,
-            amount: amountPaise
-          };
-          console.log(`Using mock Razorpay Order ID for development: ${rzpOrder.id}`);
+        if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+          throw new Error('Razorpay production environment keys are not configured');
         }
+
+        const amountPaise = Math.round(orderData.totalAmount * 100);
+        const options = {
+          amount: amountPaise,
+          currency: 'INR',
+          receipt: `receipt_order_${orderData.orderId}`,
+        };
+        const rzpOrder = await razorpay.orders.create(options);
 
         // Save the Razorpay Order ID in DB
         await orderModel.updateRazorpayOrderId(orderData.orderId, rzpOrder.id);
         
         // Log the payment registration
-        await orderModel.recordPaymentLog(orderData.orderId, rzpOrder.id, null, hasCredentials ? 'payment_created' : 'mock_payment_created', rzpOrder);
+        await orderModel.recordPaymentLog(orderData.orderId, rzpOrder.id, null, 'payment_created', rzpOrder);
 
         return responseHelper.sendSuccess(res, 201, 'Order created, payment pending', {
           orderId: orderData.orderId,
@@ -84,7 +71,7 @@ const createOrder = async (req, res) => {
           razorpayOrderId: rzpOrder.id,
           amount: orderData.totalAmount,
           amountPaise: amountPaise,
-          razorpayKeyId: hasCredentials ? process.env.RAZORPAY_KEY_ID : 'rzp_test_mock_key_id'
+          razorpayKeyId: process.env.RAZORPAY_KEY_ID
         });
       } catch (rzpError) {
         console.error('Razorpay Order Creation Failed:', rzpError);
@@ -126,16 +113,14 @@ const verifyPayment = async (req, res) => {
     }
 
     // 1. Verify Razorpay signature
-    let isSignatureValid = false;
-    
-    if (razorpayOrderId.startsWith('order_mock_')) {
-      isSignatureValid = razorpaySignature === 'mock_signature_verified';
-    } else {
-      const shasum = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET || 'test_secret_placeholder_12345');
-      shasum.update(razorpayOrderId + '|' + razorpayPaymentId);
-      const digest = shasum.digest('hex');
-      isSignatureValid = digest === razorpaySignature;
+    if (!process.env.RAZORPAY_KEY_SECRET) {
+      throw new Error('Razorpay production keys are not configured');
     }
+
+    const shasum = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET);
+    shasum.update(razorpayOrderId + '|' + razorpayPaymentId);
+    const digest = shasum.digest('hex');
+    const isSignatureValid = digest === razorpaySignature;
 
     if (!isSignatureValid) {
       await orderModel.recordPaymentLog(orderId, razorpayOrderId, razorpayPaymentId, 'signature_verification_failed', { receivedSignature: razorpaySignature });
@@ -243,29 +228,17 @@ const retryPayment = async (req, res) => {
       return responseHelper.sendError(res, 400, 'Order has already been paid');
     }
 
-    const hasCredentials = process.env.RAZORPAY_KEY_ID && 
-                           process.env.RAZORPAY_KEY_SECRET && 
-                           !process.env.RAZORPAY_KEY_ID.includes('placeholder') &&
-                           !process.env.RAZORPAY_KEY_SECRET.includes('placeholder') &&
-                           process.env.RAZORPAY_KEY_ID !== 'rzp_test_Dq94dK40f8K201';
-    
-    let rzpOrder;
-    const amountPaise = Math.round(order.total_amount * 100);
-
-    if (hasCredentials) {
-      const options = {
-        amount: amountPaise,
-        currency: 'INR',
-        receipt: `receipt_retry_${order.id}`,
-      };
-      rzpOrder = await razorpay.orders.create(options);
-    } else {
-      rzpOrder = {
-        id: `order_mock_${Math.random().toString(36).substring(2, 10).toUpperCase()}`,
-        amount: amountPaise
-      };
-      console.log(`Using mock Razorpay Order ID for retry development: ${rzpOrder.id}`);
+    if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+      throw new Error('Razorpay production environment keys are not configured');
     }
+    
+    const amountPaise = Math.round(order.total_amount * 100);
+    const options = {
+      amount: amountPaise,
+      currency: 'INR',
+      receipt: `receipt_retry_${order.id}`,
+    };
+    const rzpOrder = await razorpay.orders.create(options);
     
     // Update order with new Razorpay Order ID
     await orderModel.updateRazorpayOrderId(order.id, rzpOrder.id);
@@ -279,7 +252,7 @@ const retryPayment = async (req, res) => {
       razorpayOrderId: rzpOrder.id,
       amount: order.total_amount,
       amountPaise: amountPaise,
-      razorpayKeyId: hasCredentials ? process.env.RAZORPAY_KEY_ID : 'rzp_test_mock_key_id'
+      razorpayKeyId: process.env.RAZORPAY_KEY_ID
     });
   } catch (error) {
     console.error('Retry Payment Error:', error);
