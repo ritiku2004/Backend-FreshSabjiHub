@@ -190,8 +190,10 @@ const createOrder = async (userId, shopId, addressId, totalAmount, items, tipAmo
         );
       }
 
-      // Clear the user's cart
-      await connection.query('DELETE FROM carts WHERE user_id = ?', [userId]);
+      // Clear the user's cart only if Cash on Delivery (COD) order
+      if (paymentMethod === 'cod') {
+        await connection.query('DELETE FROM carts WHERE user_id = ?', [userId]);
+      }
 
       await connection.commit();
       
@@ -292,6 +294,9 @@ const verifyAndConfirmPayment = async (orderId, paymentId, signature) => {
         [item.quantity, item.product_id]
       );
     }
+
+    // Clear the user's cart on successful payment confirmation
+    await connection.query('DELETE FROM carts WHERE user_id = ?', [order.user_id]);
 
     await connection.commit();
     return { 

@@ -5,10 +5,34 @@ const isValidGuestId = (guestId) => {
   return typeof guestId === 'string' && /^guest_[a-zA-Z0-9_-]+$/.test(guestId);
 };
 
+const resolveUserId = async (userId) => {
+  if (typeof userId === 'string' && userId.startsWith('mock_user_')) {
+    const phone = userId.replace('mock_user_', '');
+    const email = `${phone}@freshsabjihub.com`;
+    let user = await userModel.getUserByPhone(phone);
+    if (!user) {
+      user = await userModel.getUserByEmail(email);
+    }
+    if (!user) {
+      const newUserId = await userModel.createUser({
+        email,
+        phone_number: phone,
+        first_name: 'Guest',
+        last_name: 'User'
+      });
+      user = await userModel.getUserById(newUserId);
+    }
+    return user.id;
+  }
+  return userId;
+};
+
 const getCart = async (req, res) => {
   try {
-    const userId = req.user ? req.user.id : (req.query.userId || (req.body && req.body.userId));
+    let userId = req.user ? req.user.id : (req.query.userId || (req.body && req.body.userId));
     const guestId = req.query.guestId || (req.body && req.body.guestId);
+    
+    userId = await resolveUserId(userId);
     
     if (!userId && !guestId) {
       return responseHelper.sendError(res, 400, 'User ID or Guest ID is required');
@@ -39,13 +63,16 @@ const getCart = async (req, res) => {
 
 const addItem = async (req, res) => {
   try {
-    const userId = req.user ? req.user.id : (req.body && req.body.userId);
+    let userId = req.user ? req.user.id : (req.body && req.body.userId);
     const guestId = req.body && req.body.guestId;
     const { shopId, productId, quantity } = req.body;
+
+    userId = await resolveUserId(userId);
 
     if ((!userId && !guestId) || !shopId || !productId || !quantity) {
       return responseHelper.sendError(res, 400, 'userId or guestId, shopId, productId, and quantity are required');
     }
+
 
     if (guestId && !isValidGuestId(guestId)) {
       return responseHelper.sendError(res, 400, 'Invalid guestId format');
@@ -106,8 +133,11 @@ const removeItem = async (req, res) => {
 
 const clearCart = async (req, res) => {
   try {
-    const userId = req.user ? req.user.id : (req.query.userId || (req.body && req.body.userId));
+    let userId = req.user ? req.user.id : (req.query.userId || (req.body && req.body.userId));
     const guestId = req.query.guestId || (req.body && req.body.guestId);
+    
+    userId = await resolveUserId(userId);
+
     if (!userId && !guestId) {
       return responseHelper.sendError(res, 400, 'User ID or Guest ID is required');
     }
@@ -125,7 +155,7 @@ const clearCart = async (req, res) => {
 
 const mergeCarts = async (req, res) => {
   try {
-    const { userId, guestId } = req.body;
+    let { userId, guestId } = req.body;
     if (!userId || !guestId) {
       return responseHelper.sendError(res, 400, 'userId and guestId are required');
     }
@@ -133,6 +163,8 @@ const mergeCarts = async (req, res) => {
     if (!isValidGuestId(guestId)) {
       return responseHelper.sendError(res, 400, 'Invalid guestId format');
     }
+
+    userId = await resolveUserId(userId);
 
     const userExists = await userModel.getUserById(userId);
     if (!userExists) {
