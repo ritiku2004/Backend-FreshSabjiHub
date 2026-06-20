@@ -139,7 +139,7 @@ const createOrder = async (userId, shopId, addressId, totalAmount, items, tipAmo
 
     const now = new Date();
     // Default initial payment_status is 'Pending' for both prepaid and cod
-    const initialStatus = paymentMethod === 'cod' ? 'Processing' : 'Pending Payment';
+    const initialStatus = paymentMethod === 'cod' ? 'Placed' : 'Pending Payment';
     
     // 5. Connect and run quick transaction for SQL insertions and cart deletion
     const connection = await pool.getConnection();
@@ -259,7 +259,7 @@ const verifyAndConfirmPayment = async (orderId, paymentId, signature) => {
     // Update the order details using exact database integer id
     await connection.query(
       'UPDATE orders SET status = ?, payment_status = ?, razorpay_payment_id = ?, razorpay_signature = ? WHERE id = ?',
-      ['Processing', 'Paid', paymentId, signature, order.id]
+      ['Placed', 'Paid', paymentId, signature, order.id]
     );
 
     // Fetch items to reduce inventory using exact database integer id

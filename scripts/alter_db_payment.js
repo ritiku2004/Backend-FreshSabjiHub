@@ -4,10 +4,10 @@ const pool = require('../src/config/db');
 async function run() {
   try {
     console.log('Altering orders status enum...');
-    // Modify status ENUM on orders table to support 'Pending Payment'
+    // Modify status ENUM on orders table to support 'Pending Payment' and 'Placed'
     await pool.query(`
       ALTER TABLE orders 
-      MODIFY COLUMN status ENUM('Pending Payment', 'Processing', 'Shipped', 'Delivered', 'Cancelled') 
+      MODIFY COLUMN status ENUM('Pending Payment', 'Placed', 'Processing', 'Shipped', 'Delivered', 'Cancelled') 
       DEFAULT 'Pending Payment'
     `);
     console.log('Orders status enum updated successfully.');

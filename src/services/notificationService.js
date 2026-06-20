@@ -46,6 +46,8 @@ const sendOrderStatus = async (userId, orderId, status) => {
 
     const titleMap = {
       placed: 'Order Placed successfully!',
+      processing: 'Order Confirmed! 🛒',
+      shipped: 'Your Order is on the Way!',
       on_the_way: 'Your Order is on the Way!',
       delivered: 'Order Delivered 🎉',
       cancelled: 'Order Cancelled ❌'
@@ -53,6 +55,8 @@ const sendOrderStatus = async (userId, orderId, status) => {
 
     const bodyMap = {
       placed: `Your order #${orderId} has been successfully placed. We will deliver it soon.`,
+      processing: `Your order #${orderId} has been confirmed and is being prepared.`,
+      shipped: `Your order #${orderId} is out for delivery. Keep your phone handy!`,
       on_the_way: `Your order #${orderId} is out for delivery. Keep your phone handy!`,
       delivered: `Your order #${orderId} has been delivered. Thank you for shopping with us!`,
       cancelled: `Your order #${orderId} has been cancelled.`
