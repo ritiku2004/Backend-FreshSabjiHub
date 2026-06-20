@@ -1,5 +1,6 @@
 const { deviceTokenModel } = require('../../models');
 const { responseHelper } = require('../../utils');
+const jwt = require('jsonwebtoken');
 
 const registerToken = async (req, res) => {
   try {
@@ -8,7 +9,19 @@ const registerToken = async (req, res) => {
       return responseHelper.sendError(res, 400, 'FCM device token is required.');
     }
 
-    const userId = req.user?.id || null;
+    // Attempt optional authentication decoding if Bearer token is provided
+    let userId = null;
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const jwtToken = authHeader.split(' ')[1];
+      try {
+        const decoded = jwt.verify(jwtToken, process.env.JWT_SECRET || 'your_jwt_secret_key_here');
+        userId = decoded.id;
+      } catch (err) {
+        console.warn('Optional JWT verification failed in registerToken:', err.message);
+      }
+    }
+
     await deviceTokenModel.saveToken({
       userId,
       token,
