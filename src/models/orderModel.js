@@ -104,7 +104,13 @@ const createOrder = async (userId, shopId, addressId, totalAmount, items, tipAmo
 
     // 3. Fetch product details for items to compute correct subtotal using general pool query
     let subtotal = 0;
-    const itemIds = items.map(item => item.productId || item.id);
+    const itemIds = items.map(item => {
+      const rawId = item.productId || item.id;
+      if (typeof rawId === 'string' && rawId.startsWith('p')) {
+        return parseInt(rawId.substring(1), 10);
+      }
+      return parseInt(rawId, 10);
+    });
     if (itemIds.length > 0) {
       const [dbProducts] = await pool.query(
         'SELECT id, name, mrp_price FROM products WHERE id IN (?)', 
@@ -117,7 +123,12 @@ const createOrder = async (userId, shopId, addressId, totalAmount, items, tipAmo
       });
 
       for (const item of items) {
-        const prodId = item.productId || item.id;
+        let prodId = item.productId || item.id;
+        if (typeof prodId === 'string' && prodId.startsWith('p')) {
+          prodId = parseInt(prodId.substring(1), 10);
+        } else {
+          prodId = parseInt(prodId, 10);
+        }
         const dbProduct = productMap[prodId];
         if (dbProduct) {
           item.name = dbProduct.name;
@@ -167,9 +178,15 @@ const createOrder = async (userId, shopId, addressId, totalAmount, items, tipAmo
       const orderId = orderResult.insertId;
 
       for (const item of items) {
+        let pId = item.productId || item.id;
+        if (typeof pId === 'string' && pId.startsWith('p')) {
+          pId = parseInt(pId.substring(1), 10);
+        } else {
+          pId = parseInt(pId, 10);
+        }
         await connection.query(
           'INSERT INTO order_items (order_id, product_id, product_name, quantity, price) VALUES (?, ?, ?, ?, ?)',
-          [orderId, item.productId || item.id, item.name || item.product_name, item.quantity, item.price]
+          [orderId, pId, item.name || item.product_name, item.quantity, item.price]
         );
       }
 
