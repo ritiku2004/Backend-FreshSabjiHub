@@ -16,8 +16,21 @@ process.on('unhandledRejection', (reason, promise) => {
 
 // Test DB Connection before starting server
 pool.getConnection()
-  .then((connection) => {
+  .then(async (connection) => {
     console.log('Database connected successfully');
+    
+    // Dynamically ensure database schema has the welcome_notified column
+    try {
+      const [columns] = await connection.query("SHOW COLUMNS FROM users LIKE 'welcome_notified'");
+      if (columns.length === 0) {
+        console.log('Adding welcome_notified column to users table...');
+        await connection.query("ALTER TABLE users ADD COLUMN welcome_notified BOOLEAN DEFAULT FALSE");
+        console.log('✅ welcome_notified column added successfully');
+      }
+    } catch (schemaError) {
+      console.error('⚠️ Failed to ensure users.welcome_notified column exists:', schemaError.message);
+    }
+
     connection.release();
     
     app.listen(PORT, '0.0.0.0', () => {

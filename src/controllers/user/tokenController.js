@@ -1,5 +1,6 @@
 const { deviceTokenModel } = require('../../models');
 const { responseHelper } = require('../../utils');
+const pool = require('../../config/db');
 const jwt = require('jsonwebtoken');
 
 const registerToken = async (req, res) => {
@@ -27,6 +28,24 @@ const registerToken = async (req, res) => {
       token,
       isAdmin: false
     });
+
+    // Check if the user is logging in for the first time and needs a welcome notification
+    if (userId) {
+      try {
+        const [userRows] = await pool.query('SELECT welcome_notified FROM users WHERE id = ?', [userId]);
+        if (userRows.length > 0 && !userRows[0].welcome_notified) {
+          // Instantly mark as notified to avoid duplicate calls during initialization/re-renders
+          await pool.query('UPDATE users SET welcome_notified = TRUE WHERE id = ?', [userId]);
+          
+          // Trigger the welcome notification asynchronously
+          const { notificationService } = require('../../services');
+          notificationService.sendWelcomeNotification(userId)
+            .catch(notifErr => console.error('Failed to send welcome notification:', notifErr));
+        }
+      } catch (dbErr) {
+        console.error('Error handling welcome notification check:', dbErr);
+      }
+    }
 
     return responseHelper.sendSuccess(res, 200, 'FCM token registered successfully.');
   } catch (error) {

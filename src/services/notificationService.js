@@ -100,7 +100,32 @@ const sendAdminOrderArrived = async (orderId) => {
   }
 };
 
+const sendWelcomeNotification = async (userId) => {
+  try {
+    const tokens = await deviceTokenModel.getTokensByUser(userId);
+    if (tokens.length === 0) {
+      console.log(`No device tokens registered yet for user ID: ${userId} to send welcome notification.`);
+      return;
+    }
+
+    const notification = {
+      title: 'Welcome to Fresh Sabji Hub! 🥬',
+      body: 'Get fresh farm-to-table groceries delivered straight to your doorstep.'
+    };
+
+    const data = {
+      type: 'welcome'
+    };
+
+    await sendMulticast(tokens, notification, data);
+    console.log(`Successfully sent welcome notification to user ID: ${userId}`);
+  } catch (error) {
+    console.error('Error in sendWelcomeNotification:', error);
+  }
+};
+
 module.exports = {
   sendOrderStatus,
-  sendAdminOrderArrived
+  sendAdminOrderArrived,
+  sendWelcomeNotification
 };

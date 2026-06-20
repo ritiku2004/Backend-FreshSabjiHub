@@ -1,5 +1,6 @@
 const { categoryModel, productModel, shopModel, bannerModel } = require('../../models');
 const { responseHelper } = require('../../utils');
+const { haversineDistanceKm } = require('../../services/distanceService');
 
 const getBanners = async (req, res) => {
   try {
@@ -36,6 +37,57 @@ const getShopByZipcode = async (req, res) => {
   }
 };
 
+const getNearestShop = async (req, res) => {
+  try {
+    const { latitude, longitude } = req.query;
+    if (!latitude || !longitude) {
+      return responseHelper.sendError(res, 400, 'Latitude and longitude are required');
+    }
+
+    const userLat = parseFloat(latitude);
+    const userLon = parseFloat(longitude);
+
+    const shops = await shopModel.getAllShops();
+    const activeShops = shops.filter(s => s.is_active);
+
+    if (activeShops.length === 0) {
+      return responseHelper.sendError(res, 404, 'No active shops found');
+    }
+
+    let nearestShop = null;
+    let minDistance = Infinity;
+
+    for (const shop of activeShops) {
+      if (shop.latitude && shop.longitude) {
+        const distance = haversineDistanceKm(
+          parseFloat(shop.latitude),
+          parseFloat(shop.longitude),
+          userLat,
+          userLon
+        );
+        if (distance < minDistance) {
+          minDistance = distance;
+          nearestShop = shop;
+        }
+      }
+    }
+
+    if (minDistance > 20) {
+      return responseHelper.sendError(res, 404, `Nearest shop is outside 20km radius (${minDistance.toFixed(2)} km)`);
+    }
+
+    const responseData = {
+      ...nearestShop,
+      distanceKm: minDistance
+    };
+
+    return responseHelper.sendSuccess(res, 200, 'Nearest shop fetched successfully', responseData);
+  } catch (error) {
+    console.error('Error fetching nearest shop:', error);
+    return responseHelper.sendError(res, 500, 'Failed to fetch nearest shop', error);
+  }
+};
+
 const getProducts = async (req, res) => {
   try {
     const products = await productModel.getAllProducts();
@@ -68,6 +120,7 @@ module.exports = {
   getBanners,
   getCategories,
   getShopByZipcode,
+  getNearestShop,
   getProducts,
   getProductById,
   getShops

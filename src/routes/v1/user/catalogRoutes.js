@@ -6,6 +6,7 @@ const { authMiddleware } = require('../../../middlewares');
 // Catalog endpoints for users (typically read-only)
 router.get('/banners', catalogController.getBanners);
 router.get('/categories', catalogController.getCategories);
+router.get('/nearest-shop', catalogController.getNearestShop);
 router.get('/products', catalogController.getProducts);
 router.get('/products/:id', catalogController.getProductById);
 router.get('/shop-by-zipcode/:zipcode', catalogController.getShopByZipcode);
