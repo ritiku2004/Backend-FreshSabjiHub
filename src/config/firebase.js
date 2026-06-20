@@ -18,19 +18,13 @@ try {
     FIREBASE_CLIENT_EMAIL &&
     FIREBASE_PRIVATE_KEY
   ) {
-    console.log('DEBUG [Firebase Key]: length =', FIREBASE_PRIVATE_KEY.length);
-    console.log('DEBUG [Firebase Key]: starts with =', JSON.stringify(FIREBASE_PRIVATE_KEY.slice(0, 40)));
-    console.log('DEBUG [Firebase Key]: ends with =', JSON.stringify(FIREBASE_PRIVATE_KEY.slice(-40)));
-    console.log('DEBUG [Firebase Key]: contains \\n string =', FIREBASE_PRIVATE_KEY.includes('\\n'));
-    console.log('DEBUG [Firebase Key]: contains actual newline =', FIREBASE_PRIVATE_KEY.includes('\n'));
-
     const serviceAccount = {
       projectId: FIREBASE_PROJECT_ID.trim(),
       clientEmail: FIREBASE_CLIENT_EMAIL.trim(),
       privateKey: FIREBASE_PRIVATE_KEY
         .trim()
         .replace(/^["']|["']$/g, '')
-        .replace(/\\n/g, '\n')
+        .replace(/\\+n/g, '\n')
         .replace(/\r/g, '')
         .replace(/\n+/g, '\n')
         .trim()
