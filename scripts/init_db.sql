@@ -206,3 +206,14 @@ INSERT INTO charges_config (id, delivery_base_charge, delivery_distance_rate, fr
 VALUES (1, 30.00, 5.00, 300.00, 15.00, 500.00)
 ON DUPLICATE KEY UPDATE id=id;
 
+-- 13. Device Tokens (For FCM Push Notifications)
+CREATE TABLE IF NOT EXISTS device_tokens (
+    token VARCHAR(255) PRIMARY KEY,
+    user_id INT NULL,
+    is_admin BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+

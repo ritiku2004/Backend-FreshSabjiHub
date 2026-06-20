@@ -22,7 +22,11 @@ try {
       projectId: FIREBASE_PROJECT_ID.trim(),
       clientEmail: FIREBASE_CLIENT_EMAIL.trim(),
       privateKey: FIREBASE_PRIVATE_KEY
+        .trim()
+        .replace(/^["']|["']$/g, '')
         .replace(/\\n/g, '\n')
+        .replace(/\r/g, '')
+        .replace(/\n+/g, '\n')
         .trim()
     };
 
