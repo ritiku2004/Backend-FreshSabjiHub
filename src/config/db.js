@@ -8,8 +8,11 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   waitForConnections: true,
-  connectionLimit: 3,
+  connectionLimit: 15,
   queueLimit: 0,
+  connectTimeout: 10000,
+  enableKeepAlive: true,
+  keepAliveInitialDelay: 10000,
   timezone: '+00:00'  // Force UTC so MySQL NOW() matches Node.js UTC timestamps
 });
 

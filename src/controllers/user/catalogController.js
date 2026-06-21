@@ -72,8 +72,8 @@ const getNearestShop = async (req, res) => {
       }
     }
 
-    if (minDistance > 20) {
-      return responseHelper.sendError(res, 404, `Nearest shop is outside 20km radius (${minDistance.toFixed(2)} km)`);
+    if (minDistance > 15) {
+      return responseHelper.sendError(res, 404, `Nearest shop is outside 15km radius (${minDistance.toFixed(2)} km)`);
     }
 
     const responseData = {
