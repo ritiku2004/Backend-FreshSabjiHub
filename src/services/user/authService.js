@@ -40,7 +40,7 @@ const verifyCustomOtpAndLogin = async (email, otpCode) => {
   const token = jwt.sign(
     { id: user.id, email: user.email, role: 'user' },
     process.env.JWT_SECRET || 'your_jwt_secret_key_here',
-    { expiresIn: '7d' }
+    { expiresIn: '90d' }
   );
 
   return {
