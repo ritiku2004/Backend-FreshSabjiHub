@@ -37863,3 +37863,1574 @@ Body: {
   }
 }
 ---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:06:50.072Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "addressId": "addr1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:06:50.093Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:07:07.928Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&shopId=1&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "shopId": "1",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:07:08.232Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:07:13.491Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&shopId=1&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "shopId": "1",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:07:13.738Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:07:50.505Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&shopId=2&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "shopId": "2",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:11:20.389Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&shopId=1&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "shopId": "1",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:11:20.634Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&shopId=2&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "shopId": "2",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:17:41.170Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/items",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Item added to cart",
+  "data": {
+    "id": 48,
+    "user_id": null,
+    "shop_id": 2,
+    "created_at": "2026-06-22T14:17:43.000Z",
+    "updated_at": "2026-06-22T14:17:43.000Z",
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [
+      {
+        "id": 86,
+        "cart_id": 48,
+        "product_id": 124,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:17:44.000Z",
+        "updated_at": "2026-06-22T14:17:44.000Z",
+        "price": "216.00",
+        "name": "Colgate (12 pcs + 1)",
+        "brand": "Colgate",
+        "size": "13.00",
+        "quantity_type": "piece",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896080684-419344076.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 216,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 261,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:17:42.181Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_puamluf0prrt219469zef&shopId=2&addressId=addr1",
+  "query": {
+    "guestId": "guest_puamluf0prrt219469zef",
+    "shopId": "2",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 48,
+    "user_id": null,
+    "shop_id": 2,
+    "created_at": "2026-06-22T14:17:43.000Z",
+    "updated_at": "2026-06-22T14:17:43.000Z",
+    "guest_id": "guest_puamluf0prrt219469zef",
+    "items": [
+      {
+        "id": 86,
+        "cart_id": 48,
+        "product_id": 124,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:17:44.000Z",
+        "updated_at": "2026-06-22T14:17:44.000Z",
+        "price": "216.00",
+        "name": "Colgate (12 pcs + 1)",
+        "brand": "Colgate",
+        "size": "13.00",
+        "quantity_type": "piece",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896080684-419344076.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 216,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 261,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:18:56.774Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/merge",
+  "query": {}
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:18:56.799Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=2&addressId=addr1",
+  "query": {
+    "userId": "1",
+    "shopId": "2",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Carts merged successfully",
+  "data": {
+    "id": 48,
+    "user_id": 1,
+    "shop_id": 2,
+    "created_at": "2026-06-22T14:17:43.000Z",
+    "updated_at": "2026-06-22T14:18:59.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 86,
+        "cart_id": 48,
+        "product_id": 124,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:17:44.000Z",
+        "updated_at": "2026-06-22T14:17:44.000Z",
+        "price": "216.00",
+        "name": "Colgate (12 pcs + 1)",
+        "brand": "Colgate",
+        "size": "13.00",
+        "quantity_type": "piece",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896080684-419344076.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 216,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 261,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:18:57.165Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=2&addressId=addr1",
+  "query": {
+    "userId": "1",
+    "shopId": "2",
+    "addressId": "addr1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:18:57.226Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=2&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "2",
+    "addressId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:18:57.312Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 48,
+    "user_id": 1,
+    "shop_id": 2,
+    "created_at": "2026-06-22T14:17:43.000Z",
+    "updated_at": "2026-06-22T14:18:59.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 86,
+        "cart_id": 48,
+        "product_id": 124,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:17:44.000Z",
+        "updated_at": "2026-06-22T14:17:44.000Z",
+        "price": "216.00",
+        "name": "Colgate (12 pcs + 1)",
+        "brand": "Colgate",
+        "size": "13.00",
+        "quantity_type": "piece",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896080684-419344076.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 216,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 261,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 48,
+    "user_id": 1,
+    "shop_id": 2,
+    "created_at": "2026-06-22T14:17:43.000Z",
+    "updated_at": "2026-06-22T14:18:59.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 86,
+        "cart_id": 48,
+        "product_id": 124,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:17:44.000Z",
+        "updated_at": "2026-06-22T14:17:44.000Z",
+        "price": "216.00",
+        "name": "Colgate (12 pcs + 1)",
+        "brand": "Colgate",
+        "size": "13.00",
+        "quantity_type": "piece",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896080684-419344076.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 216,
+      "savings": 0,
+      "deliveryFee": 214.47,
+      "handlingFee": 15,
+      "grandTotal": 445.47,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 36.89
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 48,
+    "user_id": 1,
+    "shop_id": 2,
+    "created_at": "2026-06-22T14:17:43.000Z",
+    "updated_at": "2026-06-22T14:18:59.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 86,
+        "cart_id": 48,
+        "product_id": 124,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:17:44.000Z",
+        "updated_at": "2026-06-22T14:17:44.000Z",
+        "price": "216.00",
+        "name": "Colgate (12 pcs + 1)",
+        "brand": "Colgate",
+        "size": "13.00",
+        "quantity_type": "piece",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896080684-419344076.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 216,
+      "savings": 0,
+      "deliveryFee": 40.01,
+      "handlingFee": 15,
+      "grandTotal": 271.01,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 2
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:19:55.828Z",
+  "method": "POST",
+  "url": "/api/v1/user/orders",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 201
+Body: {
+  "success": true,
+  "message": "Order created successfully",
+  "data": {
+    "orderId": 73,
+    "orderNumber": "ORD554687",
+    "status": "Placed",
+    "createdAt": "2026-06-22T14:19:56.645Z",
+    "paymentRequired": false
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:15.052Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:15.208Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:21.480Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/items",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Item added to cart",
+  "data": {
+    "id": 49,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:23:24.000Z",
+    "updated_at": "2026-06-22T14:23:24.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 87,
+        "cart_id": 49,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:23:24.000Z",
+        "updated_at": "2026-06-22T14:23:24.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 1410,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 1410,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:22.378Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:22.591Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/items",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 49,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:23:24.000Z",
+    "updated_at": "2026-06-22T14:23:24.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 87,
+        "cart_id": 49,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:23:24.000Z",
+        "updated_at": "2026-06-22T14:23:24.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 1410,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 1410,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 2
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Item added to cart",
+  "data": {
+    "id": 49,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:23:24.000Z",
+    "updated_at": "2026-06-22T14:23:24.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 87,
+        "cart_id": 49,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:23:24.000Z",
+        "updated_at": "2026-06-22T14:23:24.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 88,
+        "cart_id": 49,
+        "product_id": 140,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:23:25.000Z",
+        "updated_at": "2026-06-22T14:23:25.000Z",
+        "price": "2220.00",
+        "name": "Chana Dal",
+        "brand": "Generic",
+        "size": "1.00",
+        "quantity_type": "pack",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781895934161-8641026.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 3630,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 3630,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:23.653Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 49,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:23:24.000Z",
+    "updated_at": "2026-06-22T14:23:24.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 87,
+        "cart_id": 49,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:23:24.000Z",
+        "updated_at": "2026-06-22T14:23:24.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 88,
+        "cart_id": 49,
+        "product_id": 140,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:23:25.000Z",
+        "updated_at": "2026-06-22T14:23:25.000Z",
+        "price": "2220.00",
+        "name": "Chana Dal",
+        "brand": "Generic",
+        "size": "1.00",
+        "quantity_type": "pack",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781895934161-8641026.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 3630,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 3630,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 2
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:28.348Z",
+  "method": "POST",
+  "url": "/api/v1/user/orders",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 201
+Body: {
+  "success": true,
+  "message": "Order created successfully",
+  "data": {
+    "orderId": 74,
+    "orderNumber": "ORD642692",
+    "status": "Placed",
+    "createdAt": "2026-06-22T14:23:28.832Z",
+    "paymentRequired": false
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:29.167Z",
+  "method": "DELETE",
+  "url": "/api/v1/user/cart?userId=1",
+  "query": {
+    "userId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart cleared successfully",
+  "data": null
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:57.595Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/items",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Item added to cart",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 1410,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 1410,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:58.498Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:58.774Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/items",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 1410,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 1410,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 2
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Item added to cart",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:23:59.867Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 2
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:24:07.447Z",
+  "method": "POST",
+  "url": "/api/v1/user/orders",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 201
+Body: {
+  "success": true,
+  "message": "Order created, payment pending",
+  "data": {
+    "orderId": 75,
+    "orderNumber": "ORD701881",
+    "status": "Pending Payment",
+    "createdAt": "2026-06-22T14:24:07.951Z",
+    "paymentRequired": true,
+    "razorpayOrderId": "order_T4i0WMKtJ3XP65",
+    "amount": 2693.25,
+    "amountPaise": 269325,
+    "razorpayKeyId": "rzp_test_T3r5bOSrYmF3BN"
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:30:04.579Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:30:05.306Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 2
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:39:56.828Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:39:57.009Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 2
+    }
+  }
+}
+---------------
