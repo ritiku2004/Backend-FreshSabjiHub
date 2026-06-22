@@ -39434,3 +39434,1907 @@ Body: {
   }
 }
 ---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:44:21.928Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1",
+  "query": {
+    "userId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:44:21.933Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1",
+  "query": {
+    "userId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:44:29.800Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:44:31.489Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 2
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:48:23.820Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&shopId=1&addressId=addr1",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "shopId": "1",
+    "addressId": "addr1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:48:23.943Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=addr1",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:48:24.072Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&addressId=addr1",
+  "query": {
+    "userId": "1",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 50,
+    "user_id": 1,
+    "shop_id": 1,
+    "created_at": "2026-06-22T14:24:00.000Z",
+    "updated_at": "2026-06-22T14:24:00.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 89,
+        "cart_id": 50,
+        "product_id": 131,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:00.000Z",
+        "updated_at": "2026-06-22T14:24:00.000Z",
+        "price": "1410.00",
+        "name": "Aashirvaad Atta (5 kg)",
+        "brand": "Aashirvaad",
+        "size": "5.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896868744-946304250.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      },
+      {
+        "id": 90,
+        "cart_id": 50,
+        "product_id": 133,
+        "quantity": 1,
+        "created_at": "2026-06-22T14:24:01.000Z",
+        "updated_at": "2026-06-22T14:24:01.000Z",
+        "price": "1440.00",
+        "name": "Aashirvaad Atta (1 kg)",
+        "brand": "Aashirvaad",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781896895094-921091984.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 2850,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 2850,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:49:08.469Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&shopId=1&addressId=addr1",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "shopId": "1",
+    "addressId": "addr1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:49:12.049Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&addressId=addr1",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "addressId": "addr1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:49:20.047Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&addressId=addr2",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "addressId": "addr2"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:50:19.355Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&shopId=1&addressId=addr2",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "shopId": "1",
+    "addressId": "addr2"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:50:19.375Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&addressId=addr2",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "addressId": "addr2"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:59:40.744Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&shopId=1&addressId=addr2",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "shopId": "1",
+    "addressId": "addr2"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T14:59:41.255Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&addressId=addr2",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "addressId": "addr2"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:00:16.982Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&addressId=addr_948598",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "addressId": "addr_948598"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:00:17.781Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_6u1755gta78r7qqjd5szd8&shopId=3&addressId=addr_948598",
+  "query": {
+    "guestId": "guest_6u1755gta78r7qqjd5szd8",
+    "shopId": "3",
+    "addressId": "addr_948598"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_6u1755gta78r7qqjd5szd8",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:01:29.902Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/merge",
+  "query": {}
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:01:30.218Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=3&addressId=addr_948598",
+  "query": {
+    "userId": "3",
+    "shopId": "3",
+    "addressId": "addr_948598"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 90,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Carts merged successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 90,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:01:31.321Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=3&addressId=addr_948598",
+  "query": {
+    "userId": "3",
+    "shopId": "3",
+    "addressId": "addr_948598"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:01:31.426Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=3&addressId=8",
+  "query": {
+    "userId": "3",
+    "shopId": "3",
+    "addressId": "8"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:01:31.460Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&addressId=8",
+  "query": {
+    "userId": "3",
+    "addressId": "8"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 90,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 90,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 512.84,
+      "handlingFee": 15,
+      "grandTotal": 572.84,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 96.57
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:02:04.787Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 90,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:02:04.980Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1&addressId=8",
+  "query": {
+    "userId": "3",
+    "shopId": "1",
+    "addressId": "8"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:02:05.057Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&addressId=8",
+  "query": {
+    "userId": "3",
+    "addressId": "8"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 90,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 298.06,
+      "handlingFee": 15,
+      "grandTotal": 358.06,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 53.61
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:02:07.893Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&addressId=10",
+  "query": {
+    "userId": "3",
+    "addressId": "10"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:02:08.430Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=3&addressId=10",
+  "query": {
+    "userId": "3",
+    "shopId": "3",
+    "addressId": "10"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 90,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 1,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T11:10:12.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 45,
+      "savings": 0,
+      "deliveryFee": 49.08,
+      "handlingFee": 15,
+      "grandTotal": 109.08,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 3.82
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:11:12.995Z",
+  "method": "PUT",
+  "url": "/api/v1/user/cart/items/85",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart item updated successfully",
+  "data": null
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:11:13.611Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=3&addressId=10",
+  "query": {
+    "userId": "3",
+    "shopId": "3",
+    "addressId": "10"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 49.08,
+      "handlingFee": 15,
+      "grandTotal": 154.08,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 3.82
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:13:24.810Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:13:26.682Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 135,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:13:27.580Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1&addressId=10",
+  "query": {
+    "userId": "3",
+    "shopId": "1",
+    "addressId": "10"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:13:27.609Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=3&addressId=10",
+  "query": {
+    "userId": "3",
+    "shopId": "3",
+    "addressId": "10"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 135,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 237.11,
+      "handlingFee": 15,
+      "grandTotal": 342.11,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 41.42
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 49.08,
+      "handlingFee": 15,
+      "grandTotal": 154.08,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 3.82
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:15:16.213Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:15:16.589Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1&addressId=10",
+  "query": {
+    "userId": "3",
+    "shopId": "1",
+    "addressId": "10"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:15:16.653Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=3&addressId=10",
+  "query": {
+    "userId": "3",
+    "shopId": "3",
+    "addressId": "10"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 135,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 237.11,
+      "handlingFee": 15,
+      "grandTotal": 342.11,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 41.42
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 49.08,
+      "handlingFee": 15,
+      "grandTotal": 154.08,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 3.82
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:16:25.041Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:16:27.417Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1&addressId=10",
+  "query": {
+    "userId": "3",
+    "shopId": "1",
+    "addressId": "10"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 30,
+      "handlingFee": 15,
+      "grandTotal": 135,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-22T15:16:29.848Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=3&addressId=10",
+  "query": {
+    "userId": "3",
+    "shopId": "3",
+    "addressId": "10"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 237.11,
+      "handlingFee": 15,
+      "grandTotal": 342.11,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 41.42
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 47,
+    "user_id": 3,
+    "shop_id": 3,
+    "created_at": "2026-06-22T11:10:12.000Z",
+    "updated_at": "2026-06-22T11:10:12.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 85,
+        "cart_id": 47,
+        "product_id": 64,
+        "quantity": 2,
+        "created_at": "2026-06-22T11:10:12.000Z",
+        "updated_at": "2026-06-22T15:11:15.000Z",
+        "price": "45.00",
+        "name": "Amul Badam Shake (200ml Can)",
+        "brand": "Amul",
+        "size": "200.00",
+        "quantity_type": "ml",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781898155437-193060141.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 90,
+      "savings": 0,
+      "deliveryFee": 49.08,
+      "handlingFee": 15,
+      "grandTotal": 154.08,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 3.82
+    }
+  }
+}
+---------------

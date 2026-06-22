@@ -143,7 +143,7 @@ const createOrder = async (userId, shopId, addressId, totalAmount, items, tipAmo
     // 4. Calculate final fees, tax and grand total
     const calculatedDeliveryFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_delivery_threshold) ? 0 : (Number(config.delivery_base_charge) + (distance * Number(config.delivery_distance_rate))));
     const calculatedHandlingFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_handling_threshold) ? 0 : Number(config.handling_fee));
-    const calculatedTaxAmount = subtotal * 0.05; // 5% GST on subtotal
+    const calculatedTaxAmount = 0; // 0 GST on subtotal
     const calculatedGrandTotal = subtotal + calculatedTaxAmount + calculatedDeliveryFee + calculatedHandlingFee + (Number(tipAmount) || 0) - (Number(discountAmount) || 0);
 
     const orderNumber = 'ORD' + Math.floor(100000 + Math.random() * 900000);
