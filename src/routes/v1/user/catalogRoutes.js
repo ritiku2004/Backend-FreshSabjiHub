@@ -9,7 +9,6 @@ router.get('/categories', catalogController.getCategories);
 router.get('/nearest-shop', catalogController.getNearestShop);
 router.get('/products', catalogController.getProducts);
 router.get('/products/:id', catalogController.getProductById);
-router.get('/shop-by-zipcode/:zipcode', catalogController.getShopByZipcode);
 router.get('/shops', catalogController.getShops);
 
 module.exports = router;

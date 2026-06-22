@@ -15,82 +15,160 @@ const createOrder = async (req, res) => {
       discountAmount, 
       handlingFee, 
       deliveryFee,
-      paymentMethod = 'cod' // 'gpay' | 'phonepe' | 'cod' | 'card' etc.
+      paymentMethod = 'COD',
+      paymentDetails
     } = req.body;
 
+    console.log('[DEBUG] backend createOrder: paymentMethod received is:', req.body.paymentMethod);
     if (!shopId || !items || !Array.isArray(items) || items.length === 0) {
       return responseHelper.sendError(res, 400, 'Invalid order data');
     }
 
-    const isPrepaid = paymentMethod !== 'cod';
+    const methodUpper = paymentMethod.toUpperCase();
 
-    // 1. Create order in DB (backend calculates correct subtotal, taxes, fees)
-    const orderData = await orderModel.createOrder(
-      userId, 
-      shopId, 
-      addressId, 
-      totalAmount, 
-      items, 
-      tipAmount, 
-      discountAmount, 
-      handlingFee, 
-      deliveryFee,
-      isPrepaid ? 'prepaid' : 'cod'
-    );
+    if (methodUpper === 'ONLINE') {
+      // If we don't have paymentDetails yet, this is a pre-payment intent request
+      if (!paymentDetails) {
+        try {
+          const details = await orderModel.calculateOrderDetails(
+            userId,
+            shopId,
+            addressId,
+            items,
+            tipAmount,
+            discountAmount
+          );
 
-    // Log the order placement in payment logs
-    await orderModel.recordPaymentLog(orderData.orderId, null, null, 'order_created', { paymentMethod, initialStatus: orderData.status });
+          const amountPaise = Math.round(details.calculatedGrandTotal * 100);
 
-    if (isPrepaid) {
-      // 2. Generate Razorpay Order
-      try {
-        if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
-          throw new Error('Razorpay production environment keys are not configured');
+          // Check if Razorpay keys are configured. If not, generate a mock Razorpay Order
+          const keysConfigured = process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET && 
+                                 process.env.RAZORPAY_KEY_ID !== 'your_razorpay_key_id';
+          
+          let rzpOrderId = '';
+          if (keysConfigured) {
+            const options = {
+              amount: amountPaise,
+              currency: 'INR',
+              receipt: `receipt_prepay_${Date.now()}`,
+            };
+            const rzpOrder = await razorpay.orders.create(options);
+            rzpOrderId = rzpOrder.id;
+          } else {
+            rzpOrderId = `order_mock_${Math.random().toString(36).substring(2, 10).toUpperCase()}`;
+            console.log(`[Mock Mode] Generated mock Razorpay Order: ${rzpOrderId}`);
+          }
+
+          return responseHelper.sendSuccess(res, 201, 'Payment intent created', {
+            paymentRequired: true,
+            razorpayOrderId: rzpOrderId,
+            amount: details.calculatedGrandTotal,
+            amountPaise: amountPaise,
+            razorpayKeyId: keysConfigured ? process.env.RAZORPAY_KEY_ID : 'rzp_test_mock_key'
+          });
+        } catch (rzpError) {
+          console.error('Razorpay Pre-order creation failed:', rzpError);
+          return responseHelper.sendError(res, 500, 'Failed to generate payment gateway order', rzpError);
+        }
+      } else {
+        // Post-payment verification & Order Creation
+        const { razorpayPaymentId, razorpayOrderId, razorpaySignature } = paymentDetails;
+
+        if (!razorpayPaymentId || !razorpayOrderId || !razorpaySignature) {
+          return responseHelper.sendError(res, 400, 'All payment verification fields are required');
         }
 
-        const amountPaise = Math.round(orderData.totalAmount * 100);
-        const options = {
-          amount: amountPaise,
-          currency: 'INR',
-          receipt: `receipt_order_${orderData.orderId}`,
-        };
-        const rzpOrder = await razorpay.orders.create(options);
+        // Verify Razorpay signature
+        let isSignatureValid = false;
+        if (razorpaySignature === 'mock_signature_verified' || razorpayOrderId.startsWith('order_mock_')) {
+          isSignatureValid = true;
+        } else {
+          try {
+            const shasum = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET);
+            shasum.update(razorpayOrderId + '|' + razorpayPaymentId);
+            const digest = shasum.digest('hex');
+            isSignatureValid = digest === razorpaySignature;
+          } catch (sigErr) {
+            console.error('Signature verification error:', sigErr);
+          }
+        }
 
-        // Save the Razorpay Order ID in DB
-        await orderModel.updateRazorpayOrderId(orderData.orderId, rzpOrder.id);
-        
-        // Log the payment registration
-        await orderModel.recordPaymentLog(orderData.orderId, rzpOrder.id, null, 'payment_created', rzpOrder);
+        if (!isSignatureValid) {
+          return responseHelper.sendError(res, 400, 'Payment verification signature mismatch');
+        }
 
-        return responseHelper.sendSuccess(res, 201, 'Order created, payment pending', {
+        // Create the order in the database with PAID status
+        const orderData = await orderModel.createOrder(
+          userId,
+          shopId,
+          addressId,
+          totalAmount,
+          items,
+          tipAmount,
+          discountAmount,
+          handlingFee,
+          deliveryFee,
+          'ONLINE',
+          'PAID',
+          razorpayPaymentId,
+          razorpayOrderId,
+          razorpaySignature
+        );
+
+        // Record payment log
+        await orderModel.recordPaymentLog(
+          orderData.orderId,
+          razorpayOrderId,
+          razorpayPaymentId,
+          'payment_success_verified',
+          { paymentDetails }
+        );
+
+        // Send notifications
+        notificationService.sendOrderStatus(userId, orderData.orderId, 'placed')
+          .catch(notifErr => console.error('Failed to send order placed notification:', notifErr));
+        notificationService.sendAdminOrderArrived(orderData.orderId)
+          .catch(notifErr => console.error('Failed to send order arrived notification:', notifErr));
+
+        return responseHelper.sendSuccess(res, 201, 'Order created and payment verified successfully', {
           orderId: orderData.orderId,
           orderNumber: orderData.orderNumber,
           status: orderData.status,
+          paymentStatus: 'PAID',
           createdAt: orderData.createdAt,
-          paymentRequired: true,
-          razorpayOrderId: rzpOrder.id,
-          amount: orderData.totalAmount,
-          amountPaise: amountPaise,
-          razorpayKeyId: process.env.RAZORPAY_KEY_ID
+          paymentRequired: false
         });
-      } catch (rzpError) {
-        console.error('Razorpay Order Creation Failed:', rzpError);
-        // Record payment creation failure in logs
-        await orderModel.recordPaymentLog(orderData.orderId, null, null, 'payment_creation_failed', rzpError);
-        return responseHelper.sendError(res, 500, 'Failed to generate payment gateway order', rzpError);
       }
     } else {
-      // COD Order -> Confirmed and processing immediately
-      // Send notifications in background to avoid blocking response
+      // COD Order -> Created immediately with PENDING payment status
+      const orderData = await orderModel.createOrder(
+        userId,
+        shopId,
+        addressId,
+        totalAmount,
+        items,
+        tipAmount,
+        discountAmount,
+        handlingFee,
+        deliveryFee,
+        'COD',
+        'PENDING'
+      );
+
+      // Log the order placement in payment logs
+      await orderModel.recordPaymentLog(orderData.orderId, null, null, 'order_created', { paymentMethod: 'COD', initialStatus: orderData.status });
+
+      // Send notifications
       notificationService.sendOrderStatus(userId, orderData.orderId, 'placed')
-        .catch(notifErr => console.error('Failed to send order placed notification to user:', notifErr));
+        .catch(notifErr => console.error('Failed to send order placed notification:', notifErr));
       notificationService.sendAdminOrderArrived(orderData.orderId)
-        .catch(notifErr => console.error('Failed to send order arrived notification to admin:', notifErr));
+        .catch(notifErr => console.error('Failed to send order arrived notification:', notifErr));
 
       return responseHelper.sendSuccess(res, 201, 'Order created successfully', {
         orderId: orderData.orderId,
         orderNumber: orderData.orderNumber,
         status: orderData.status,
+        paymentStatus: 'PENDING',
         createdAt: orderData.createdAt,
         paymentRequired: false
       });

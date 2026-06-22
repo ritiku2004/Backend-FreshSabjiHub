@@ -80,14 +80,14 @@ const seedDB = async () => {
 
     console.log('Seeding Shops...');
     const shops = [
-      { id: 1, name: 'North Warehouse', address: '123 North St', city: 'Metropolis', zipcode: '10001', lat: 28.7, lng: 77.1 },
-      { id: 2, name: 'South Warehouse', address: '456 South St', city: 'Metropolis', zipcode: '10002', lat: 28.5, lng: 77.2 },
-      { id: 3, name: 'Central Hub', address: '789 Central Ave', city: 'Metropolis', zipcode: '10003', lat: 28.6, lng: 77.3 }
+      { id: 1, name: 'North Warehouse', address: '123 North St', city: 'Metropolis', lat: 28.7, lng: 77.1 },
+      { id: 2, name: 'South Warehouse', address: '456 South St', city: 'Metropolis', lat: 28.5, lng: 77.2 },
+      { id: 3, name: 'Central Hub', address: '789 Central Ave', city: 'Metropolis', lat: 28.6, lng: 77.3 }
     ];
     for (const shop of shops) {
       await pool.query(
-        `INSERT INTO shops (id, name, address, city, zipcode, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name), zipcode=VALUES(zipcode)`,
-        [shop.id, shop.name, shop.address, shop.city, shop.zipcode, shop.lat, shop.lng]
+        `INSERT INTO shops (id, name, address, city, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE name=VALUES(name)`,
+        [shop.id, shop.name, shop.address, shop.city, shop.lat, shop.lng]
       );
     }
 

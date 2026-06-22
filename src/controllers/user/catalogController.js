@@ -26,16 +26,6 @@ const getCategories = async (req, res) => {
   }
 };
 
-const getShopByZipcode = async (req, res) => {
-  try {
-    const { zipcode } = req.params;
-    const shop = await shopModel.getShopByZipcode(zipcode);
-    if (!shop) return responseHelper.sendError(res, 404, 'No service available at this location');
-    return responseHelper.sendSuccess(res, 200, 'Shop fetched successfully', shop);
-  } catch (error) {
-    return responseHelper.sendError(res, 500, 'Failed to fetch shop', error);
-  }
-};
 
 const getNearestShop = async (req, res) => {
   try {
@@ -119,7 +109,6 @@ const getShops = async (req, res) => {
 module.exports = {
   getBanners,
   getCategories,
-  getShopByZipcode,
   getNearestShop,
   getProducts,
   getProductById,

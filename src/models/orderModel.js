@@ -18,7 +18,7 @@ const getOrderById = async (id) => {
 
   const [rows] = await pool.query(`
     SELECT o.*, u.first_name, u.last_name, u.phone_number as user_phone, s.name as shop_name,
-           a.address_line1, a.address_line2, a.city, a.state, a.zipcode,
+           a.address_line1, a.address_line2, a.city, a.state,
            a.receiver_name, a.receiver_mobile, a.latitude, a.longitude
     FROM orders o
     JOIN users u ON o.user_id = u.id
@@ -65,119 +65,161 @@ const updateOrderStatus = async (id, status, payment_status) => {
   return result.affectedRows > 0;
 };
 
-const createOrder = async (userId, shopId, addressId, totalAmount, items, tipAmount = 0, discountAmount = 0, handlingFee = 0, deliveryFee = 0, paymentMethod = 'cod') => {
-  try {
-    // 1. Fetch address details to use for distance calculations using general pool query
-    let addressIdToUse = addressId;
-    if (!addressIdToUse) {
-      const [users] = await pool.query('SELECT default_address_id FROM users WHERE id = ?', [userId]);
-      if (users.length > 0 && users[0].default_address_id) {
-        addressIdToUse = users[0].default_address_id;
+const calculateOrderDetails = async (userId, shopId, addressId, items, tipAmount = 0, discountAmount = 0) => {
+  // 1. Fetch address details to use for distance calculations using general pool query
+  let addressIdToUse = addressId;
+  if (!addressIdToUse) {
+    const [users] = await pool.query('SELECT default_address_id FROM users WHERE id = ?', [userId]);
+    if (users.length > 0 && users[0].default_address_id) {
+      addressIdToUse = users[0].default_address_id;
+    }
+  }
+
+  let distance = 0;
+  if (shopId && addressIdToUse) {
+    const [shops] = await pool.query('SELECT latitude, longitude FROM shops WHERE id = ?', [shopId]);
+    if (shops.length > 0 && shops[0].latitude && shops[0].longitude) {
+      const [addresses] = await pool.query('SELECT latitude, longitude FROM user_addresses WHERE id = ?', [addressIdToUse]);
+      if (addresses.length > 0 && addresses[0].latitude && addresses[0].longitude) {
+        distance = await getRoadDistanceKm(
+          parseFloat(shops[0].latitude), 
+          parseFloat(shops[0].longitude),
+          parseFloat(addresses[0].latitude),
+          parseFloat(addresses[0].longitude)
+        );
       }
     }
+  }
 
-    let distance = 0;
-    if (shopId && addressIdToUse) {
-      const [shops] = await pool.query('SELECT latitude, longitude FROM shops WHERE id = ?', [shopId]);
-      if (shops.length > 0 && shops[0].latitude && shops[0].longitude) {
-        const [addresses] = await pool.query('SELECT latitude, longitude FROM user_addresses WHERE id = ?', [addressIdToUse]);
-        if (addresses.length > 0 && addresses[0].latitude && addresses[0].longitude) {
-          distance = await getRoadDistanceKm(
-            parseFloat(shops[0].latitude), 
-            parseFloat(shops[0].longitude),
-            parseFloat(addresses[0].latitude),
-            parseFloat(addresses[0].longitude)
-          );
-        }
-      }
+  // 2. Fetch the charges config using general pool query
+  const [configs] = await pool.query('SELECT * FROM charges_config WHERE id = 1');
+  const config = configs[0] || {
+    delivery_base_charge: 30.00,
+    delivery_distance_rate: 5.00,
+    free_delivery_threshold: 300.00,
+    handling_fee: 15.00,
+    free_handling_threshold: 500.00
+  };
+
+  // 3. Fetch product details for items to compute correct subtotal using general pool query
+  let subtotal = 0;
+  const itemIds = items.map(item => {
+    const rawId = item.productId || item.id;
+    if (typeof rawId === 'string' && rawId.startsWith('p')) {
+      return parseInt(rawId.substring(1), 10);
     }
+    return parseInt(rawId, 10);
+  });
+  
+  const processedItems = JSON.parse(JSON.stringify(items)); // Deep copy to prevent modifying original parameters
 
-    // 2. Fetch the charges config using general pool query
-    const [configs] = await pool.query('SELECT * FROM charges_config WHERE id = 1');
-    const config = configs[0] || {
-      delivery_base_charge: 30.00,
-      delivery_distance_rate: 5.00,
-      free_delivery_threshold: 300.00,
-      handling_fee: 15.00,
-      free_handling_threshold: 500.00
-    };
-
-    // 3. Fetch product details for items to compute correct subtotal using general pool query
-    let subtotal = 0;
-    const itemIds = items.map(item => {
-      const rawId = item.productId || item.id;
-      if (typeof rawId === 'string' && rawId.startsWith('p')) {
-        return parseInt(rawId.substring(1), 10);
-      }
-      return parseInt(rawId, 10);
+  if (itemIds.length > 0) {
+    const [dbProducts] = await pool.query(
+      'SELECT id, name, mrp_price, discount_percentage FROM products WHERE id IN (?)', 
+      [itemIds]
+    );
+    
+    const productMap = {};
+    dbProducts.forEach(p => {
+      productMap[p.id] = p;
     });
-    if (itemIds.length > 0) {
-      const [dbProducts] = await pool.query(
-        'SELECT id, name, mrp_price FROM products WHERE id IN (?)', 
-        [itemIds]
-      );
-      
-      const productMap = {};
-      dbProducts.forEach(p => {
-        productMap[p.id] = p;
-      });
 
-      for (const item of items) {
-        let prodId = item.productId || item.id;
-        if (typeof prodId === 'string' && prodId.startsWith('p')) {
-          prodId = parseInt(prodId.substring(1), 10);
-        } else {
-          prodId = parseInt(prodId, 10);
-        }
-        const dbProduct = productMap[prodId];
-        if (dbProduct) {
-          item.name = dbProduct.name;
-          const originalPrice = Number(dbProduct.mrp_price);
-          const discountPrice = Math.max(0, originalPrice - (originalPrice * 0.10));
-          item.price = discountPrice; // use discounted price for transaction
-          subtotal += discountPrice * item.quantity;
-        }
+    for (const item of processedItems) {
+      let prodId = item.productId || item.id;
+      if (typeof prodId === 'string' && prodId.startsWith('p')) {
+        prodId = parseInt(prodId.substring(1), 10);
+      } else {
+        prodId = parseInt(prodId, 10);
+      }
+      const dbProduct = productMap[prodId];
+      if (dbProduct) {
+        item.name = dbProduct.name;
+        const originalPrice = Number(dbProduct.mrp_price);
+        const discountPercentage = Number(dbProduct.discount_percentage || 0);
+        const discountPrice = Math.max(0, originalPrice - (originalPrice * (discountPercentage / 100)));
+        item.price = discountPrice; // use discounted price for transaction
+        subtotal += discountPrice * item.quantity;
       }
     }
+  }
 
-    // 4. Calculate final fees, tax and grand total
-    const calculatedDeliveryFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_delivery_threshold) ? 0 : (Number(config.delivery_base_charge) + (distance * Number(config.delivery_distance_rate))));
-    const calculatedHandlingFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_handling_threshold) ? 0 : Number(config.handling_fee));
-    const calculatedTaxAmount = subtotal * 0.05; // 5% GST on subtotal
-    const calculatedGrandTotal = subtotal + calculatedTaxAmount + calculatedDeliveryFee + calculatedHandlingFee + (Number(tipAmount) || 0) - (Number(discountAmount) || 0);
+  // 4. Calculate final fees, tax and grand total
+  const calculatedDeliveryFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_delivery_threshold) ? 0 : (Number(config.delivery_base_charge) + (distance * Number(config.delivery_distance_rate))));
+  const calculatedHandlingFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_handling_threshold) ? 0 : Number(config.handling_fee));
+  const calculatedTaxAmount = 0; // GST completely removed
+  const calculatedGrandTotal = subtotal + calculatedDeliveryFee + calculatedHandlingFee + (Number(tipAmount) || 0) - (Number(discountAmount) || 0);
+
+  return {
+    subtotal,
+    distance,
+    config,
+    items: processedItems,
+    calculatedDeliveryFee,
+    calculatedHandlingFee,
+    calculatedTaxAmount,
+    calculatedGrandTotal,
+    addressIdToUse
+  };
+};
+
+const createOrder = async (
+  userId, 
+  shopId, 
+  addressId, 
+  totalAmount, 
+  items, 
+  tipAmount = 0, 
+  discountAmount = 0, 
+  handlingFee = 0, 
+  deliveryFee = 0, 
+  paymentMethod = 'COD', 
+  paymentStatus = 'PENDING',
+  razorpayPaymentId = null,
+  razorpayOrderId = null,
+  razorpaySignature = null
+) => {
+  try {
+    const details = await calculateOrderDetails(userId, shopId, addressId, items, tipAmount, discountAmount);
 
     const orderNumber = 'ORD' + Math.floor(100000 + Math.random() * 900000);
-
     const now = new Date();
-    // Default initial payment_status is 'Pending' for both prepaid and cod
-    const initialStatus = paymentMethod === 'cod' ? 'Placed' : 'Pending Payment';
+    const initialStatus = 'Placed'; // Since order creation only happens once payment is complete (online) or accepted (COD)
     
-    // 5. Connect and run quick transaction for SQL insertions and cart deletion
+    // Connect and run quick transaction for SQL insertions, inventory reduction, and cart deletion
     const connection = await pool.getConnection();
     try {
       await connection.beginTransaction();
 
       const [orderResult] = await connection.query(
-        'INSERT INTO orders (order_number, user_id, shop_id, address_id, total_amount, tip_amount, discount_amount, handling_fee, delivery_fee, tax_amount, status, payment_status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        `INSERT INTO orders (
+          order_number, user_id, shop_id, address_id, total_amount, 
+          tip_amount, discount_amount, handling_fee, delivery_fee, tax_amount, 
+          status, payment_status, payment_method, razorpay_payment_id, razorpay_order_id, 
+          razorpay_signature, created_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           orderNumber, 
           userId, 
           shopId, 
-          addressIdToUse || null, 
-          parseFloat(calculatedGrandTotal.toFixed(2)), 
+          details.addressIdToUse || null, 
+          parseFloat(details.calculatedGrandTotal.toFixed(2)), 
           Number(tipAmount) || 0, 
           Number(discountAmount) || 0, 
-          parseFloat(calculatedHandlingFee.toFixed(2)), 
-          parseFloat(calculatedDeliveryFee.toFixed(2)), 
-          parseFloat(calculatedTaxAmount.toFixed(2)),
+          parseFloat(details.calculatedHandlingFee.toFixed(2)), 
+          parseFloat(details.calculatedDeliveryFee.toFixed(2)), 
+          parseFloat(details.calculatedTaxAmount.toFixed(2)),
           initialStatus, 
-          'Pending',
+          paymentStatus,
+          paymentMethod,
+          razorpayPaymentId,
+          razorpayOrderId,
+          razorpaySignature,
           now
         ]
       );
       const orderId = orderResult.insertId;
 
-      for (const item of items) {
+      for (const item of details.items) {
         let pId = item.productId || item.id;
         if (typeof pId === 'string' && pId.startsWith('p')) {
           pId = parseInt(pId.substring(1), 10);
@@ -188,18 +230,22 @@ const createOrder = async (userId, shopId, addressId, totalAmount, items, tipAmo
           'INSERT INTO order_items (order_id, product_id, product_name, quantity, price) VALUES (?, ?, ?, ?, ?)',
           [orderId, pId, item.name || item.product_name, item.quantity, item.price]
         );
+
+        // Decrement stock_quantity in products table
+        await connection.query(
+          'UPDATE products SET stock_quantity = GREATEST(0, stock_quantity - ?) WHERE id = ?',
+          [item.quantity, pId]
+        );
       }
 
-      // Clear the user's cart only if Cash on Delivery (COD) order
-      if (paymentMethod === 'cod') {
-        await connection.query('DELETE FROM carts WHERE user_id = ?', [userId]);
-      }
+      // Clear the user's cart
+      await connection.query('DELETE FROM carts WHERE user_id = ?', [userId]);
 
       await connection.commit();
       
-      return { orderId, orderNumber, totalAmount: calculatedGrandTotal, createdAt: now.toISOString(), status: initialStatus };
+      return { orderId, orderNumber, totalAmount: details.calculatedGrandTotal, createdAt: now.toISOString(), status: initialStatus };
     } catch (txError) {
-      console.error('Original Create Order Transaction Error:', txError);
+      console.error('Create Order Transaction Error:', txError);
       try {
         await connection.rollback();
       } catch (rollbackError) {
@@ -218,7 +264,7 @@ const createOrder = async (userId, shopId, addressId, totalAmount, items, tipAmo
 const getOrdersByUserId = async (userId) => {
   const [rows] = await pool.query(`
     SELECT o.*, s.name as shop_name,
-           a.address_line1, a.address_line2, a.city, a.state, a.zipcode, a.receiver_name, a.receiver_mobile, a.title as address_title
+           a.address_line1, a.address_line2, a.city, a.state, a.receiver_name, a.receiver_mobile, a.title as address_title
     FROM orders o
     JOIN shops s ON o.shop_id = s.id
     LEFT JOIN user_addresses a ON o.address_id = a.id
@@ -373,5 +419,6 @@ module.exports = {
   verifyAndConfirmPayment,
   recordPaymentLog,
   getPaymentLogsByOrderId,
-  getOrderByRazorpayOrderId
+  getOrderByRazorpayOrderId,
+  calculateOrderDetails
 };

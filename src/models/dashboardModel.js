@@ -1,11 +1,11 @@
 const pool = require('../config/db');
 
 const getKPIs = async (startDate) => {
-  let queryModifier = '';
+  let queryModifier = "WHERE status != 'Cancelled'";
   let queryParams = [];
 
   if (startDate) {
-    queryModifier = 'WHERE created_at >= ?';
+    queryModifier = "WHERE status != 'Cancelled' AND created_at >= ?";
     queryParams = [startDate];
   }
 
@@ -20,11 +20,18 @@ const getKPIs = async (startDate) => {
   `, queryParams);
 
   // New Customers in timeframe
+  let userQueryModifier = '';
+  let userQueryParams = [];
+  if (startDate) {
+    userQueryModifier = 'WHERE created_at >= ?';
+    userQueryParams = [startDate];
+  }
+
   const [customersRows] = await pool.query(`
     SELECT COUNT(*) as newCustomers 
     FROM users 
-    ${queryModifier}
-  `, queryParams);
+    ${userQueryModifier}
+  `, userQueryParams);
 
   // Total active products (no 'stock' column on products table - use is_active flag)
   const [productsRows] = await pool.query(`SELECT COUNT(*) as count FROM products WHERE is_active = 1`);
@@ -39,11 +46,11 @@ const getKPIs = async (startDate) => {
 };
 
 const getRevenueTimeSeries = async (startDate) => {
-  let queryModifier = '';
+  let queryModifier = "WHERE status != 'Cancelled'";
   let queryParams = [];
 
   if (startDate) {
-    queryModifier = 'WHERE created_at >= ?';
+    queryModifier = "WHERE status != 'Cancelled' AND created_at >= ?";
     queryParams = [startDate];
   }
 
@@ -72,7 +79,7 @@ const getCategorySales = async (startDate) => {
   let queryParams = [];
 
   if (startDate) {
-    queryModifier = 'AND oi.created_at >= ?';
+    queryModifier = 'AND o.created_at >= ?';
     queryParams = [startDate];
   }
 
@@ -81,9 +88,10 @@ const getCategorySales = async (startDate) => {
       c.name as name, 
       COALESCE(SUM(oi.quantity * oi.price), 0) as value
     FROM order_items oi
+    JOIN orders o ON oi.order_id = o.id
     JOIN products p ON oi.product_id = p.id
     JOIN categories c ON p.category_id = c.id
-    WHERE 1=1 ${queryModifier}
+    WHERE o.status != 'Cancelled' ${queryModifier}
     GROUP BY c.id, c.name
     ORDER BY value DESC
   `, queryParams);
@@ -117,17 +125,18 @@ const getTopProducts = async (startDate) => {
   let queryParams = [];
 
   if (startDate) {
-    queryModifier = 'WHERE created_at >= ?';
+    queryModifier = 'AND o.created_at >= ?';
     queryParams = [startDate];
   }
 
   const [rows] = await pool.query(`
     SELECT 
-      product_name as name, 
-      SUM(quantity) as sales
-    FROM order_items 
-    ${queryModifier}
-    GROUP BY product_id, product_name
+      oi.product_name as name, 
+      SUM(oi.quantity) as sales
+    FROM order_items oi
+    JOIN orders o ON oi.order_id = o.id
+    WHERE o.status != 'Cancelled' ${queryModifier}
+    GROUP BY oi.product_id, oi.product_name
     ORDER BY sales DESC
     LIMIT 5
   `, queryParams);

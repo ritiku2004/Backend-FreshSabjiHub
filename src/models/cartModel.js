@@ -94,6 +94,7 @@ const getCartByUserId = async (userId, activeShopId = null, activeAddressId = nu
 
     const deliveryFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_delivery_threshold) ? 0 : (Number(config.delivery_base_charge) + (distance * Number(config.delivery_distance_rate))));
     const handlingFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_handling_threshold) ? 0 : Number(config.handling_fee));
+    const taxAmount = 0; // GST completely removed
     const grandTotal = subtotal + deliveryFee + handlingFee;
 
     cart.pricing = {
@@ -101,6 +102,7 @@ const getCartByUserId = async (userId, activeShopId = null, activeAddressId = nu
       savings: parseFloat(savings.toFixed(2)),
       deliveryFee: parseFloat(deliveryFee.toFixed(2)),
       handlingFee: parseFloat(handlingFee.toFixed(2)),
+      taxAmount: parseFloat(taxAmount.toFixed(2)),
       grandTotal: parseFloat(grandTotal.toFixed(2)),
       freeDeliveryThreshold: Number(config.free_delivery_threshold),
       freeHandlingThreshold: Number(config.free_handling_threshold),

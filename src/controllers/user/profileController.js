@@ -62,7 +62,7 @@ const saveAddress = async (req, res) => {
     const userId = req.user.id;
     const addressData = req.body;
     
-    if (!addressData.address_line1 || !addressData.city || !addressData.zipcode) {
+    if (!addressData.address_line1 || !addressData.city) {
       return responseHelper.sendError(res, 400, 'Required address fields missing');
     }
 

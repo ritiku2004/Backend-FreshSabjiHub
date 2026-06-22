@@ -113,7 +113,7 @@ const getUserAddresses = async (userId) => {
 };
 
 const saveUserAddress = async (userId, addressData) => {
-  const { title, address_line1, address_line2, city, state, zipcode, latitude, longitude, is_default, receiver_name, receiver_mobile } = addressData;
+  const { title, address_line1, address_line2, city, state, latitude, longitude, is_default, receiver_name, receiver_mobile } = addressData;
   const cleanTitle = (title || 'Other').trim();
   const validTitles = ['Home', 'Office', 'Other'];
   if (!validTitles.includes(cleanTitle)) {
@@ -128,13 +128,12 @@ const saveUserAddress = async (userId, addressData) => {
   if (existing.length > 0) {
     const addressId = existing[0].id;
     await pool.query(
-      'UPDATE user_addresses SET address_line1 = ?, address_line2 = ?, city = ?, state = ?, zipcode = ?, latitude = ?, longitude = ?, is_default = ?, receiver_name = ?, receiver_mobile = ? WHERE id = ?',
+      'UPDATE user_addresses SET address_line1 = ?, address_line2 = ?, city = ?, state = ?, latitude = ?, longitude = ?, is_default = ?, receiver_name = ?, receiver_mobile = ? WHERE id = ?',
       [
         address_line1,
         address_line2 || null,
         city || 'City',
         state || 'State',
-        zipcode,
         latitude || null,
         longitude || null,
         is_default || false,
@@ -146,7 +145,7 @@ const saveUserAddress = async (userId, addressData) => {
     return addressId;
   } else {
     const [result] = await pool.query(
-      'INSERT INTO user_addresses (user_id, title, address_line1, address_line2, city, state, zipcode, latitude, longitude, is_default, receiver_name, receiver_mobile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      'INSERT INTO user_addresses (user_id, title, address_line1, address_line2, city, state, latitude, longitude, is_default, receiver_name, receiver_mobile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [
         userId,
         cleanTitle,
@@ -154,7 +153,6 @@ const saveUserAddress = async (userId, addressData) => {
         address_line2 || null,
         city || 'City',
         state || 'State',
-        zipcode,
         latitude || null,
         longitude || null,
         is_default || false,
