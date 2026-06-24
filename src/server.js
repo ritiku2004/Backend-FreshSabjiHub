@@ -31,6 +31,26 @@ pool.getConnection()
       console.error('⚠️ Failed to ensure users.welcome_notified column exists:', schemaError.message);
     }
 
+    // Dynamically ensure notifications table exists
+    try {
+      await connection.query(`
+        CREATE TABLE IF NOT EXISTS notifications (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          user_id INT NOT NULL,
+          title VARCHAR(255) NOT NULL,
+          message TEXT NOT NULL,
+          type VARCHAR(50) DEFAULT 'system',
+          data JSON NULL,
+          is_read BOOLEAN DEFAULT FALSE,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+      `);
+      console.log('✅ notifications table verified/created successfully');
+    } catch (schemaError) {
+      console.error('⚠️ Failed to ensure notifications table exists:', schemaError.message);
+    }
+
     connection.release();
     
     app.listen(PORT, '0.0.0.0', () => {

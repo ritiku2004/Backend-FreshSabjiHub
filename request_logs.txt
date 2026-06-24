@@ -11078,3 +11078,130 @@ Body: {
   ]
 }
 ---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-24T13:12:06.592Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1",
+  "query": {
+    "userId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-24T13:12:06.599Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1",
+  "query": {
+    "userId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-24T13:12:09.825Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1",
+  "query": {
+    "userId": "1",
+    "shopId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-06-24T13:12:09.902Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=1&addressId=15",
+  "query": {
+    "userId": "1",
+    "shopId": "1",
+    "addressId": "15"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------

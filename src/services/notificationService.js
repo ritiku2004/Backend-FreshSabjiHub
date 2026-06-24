@@ -1,5 +1,5 @@
 const firebase = require('../config/firebase');
-const { deviceTokenModel } = require('../models');
+const { deviceTokenModel, notificationModel } = require('../models');
 
 const sendMulticast = async (tokens, notification, data = {}) => {
   if (!tokens || tokens.length === 0) return;
@@ -41,9 +41,6 @@ const sendMulticast = async (tokens, notification, data = {}) => {
 
 const sendOrderStatus = async (userId, orderId, status) => {
   try {
-    const tokens = await deviceTokenModel.getTokensByUser(userId);
-    if (tokens.length === 0) return;
-
     const titleMap = {
       placed: 'Order Placed successfully!',
       processing: 'Order Confirmed! 🛒',
@@ -62,10 +59,8 @@ const sendOrderStatus = async (userId, orderId, status) => {
       cancelled: `Your order #${orderId} has been cancelled.`
     };
 
-    const notification = {
-      title: titleMap[status] || 'Order Update',
-      body: bodyMap[status] || `Your order #${orderId} status has changed to ${status}.`
-    };
+    const title = titleMap[status] || 'Order Update';
+    const body = bodyMap[status] || `Your order #${orderId} status has changed to ${status}.`;
 
     const data = {
       orderId: String(orderId),
@@ -73,6 +68,24 @@ const sendOrderStatus = async (userId, orderId, status) => {
       type: 'order_status'
     };
 
+    // Save notification to database first
+    let notificationId = null;
+    try {
+      notificationId = await notificationModel.createNotification(userId, title, body, 'order_status', data);
+      if (notificationId) {
+        data.notificationId = String(notificationId);
+      }
+    } catch (dbErr) {
+      console.error('Error saving order status notification to DB:', dbErr);
+    }
+
+    const tokens = await deviceTokenModel.getTokensByUser(userId);
+    if (tokens.length === 0) {
+      console.log(`No device tokens registered for user ID: ${userId}. Saved to DB history only.`);
+      return;
+    }
+
+    const notification = { title, body };
     await sendMulticast(tokens, notification, data);
   } catch (error) {
     console.error('Error in sendOrderStatus notification:', error);
@@ -102,21 +115,30 @@ const sendAdminOrderArrived = async (orderId) => {
 
 const sendWelcomeNotification = async (userId) => {
   try {
-    const tokens = await deviceTokenModel.getTokensByUser(userId);
-    if (tokens.length === 0) {
-      console.log(`No device tokens registered yet for user ID: ${userId} to send welcome notification.`);
-      return;
-    }
-
-    const notification = {
-      title: 'Welcome to Fresh Sabji Hub! 🥬',
-      body: 'Get fresh farm-to-table groceries delivered straight to your doorstep.'
-    };
-
+    const title = 'Welcome to Fresh Sabji Hub! 🥬';
+    const body = 'Get fresh farm-to-table groceries delivered straight to your doorstep.';
     const data = {
       type: 'welcome'
     };
 
+    // Save to database first
+    let notificationId = null;
+    try {
+      notificationId = await notificationModel.createNotification(userId, title, body, 'welcome', data);
+      if (notificationId) {
+        data.notificationId = String(notificationId);
+      }
+    } catch (dbErr) {
+      console.error('Error saving welcome notification to DB:', dbErr);
+    }
+
+    const tokens = await deviceTokenModel.getTokensByUser(userId);
+    if (tokens.length === 0) {
+      console.log(`No device tokens registered yet for user ID: ${userId}. Saved to DB history only.`);
+      return;
+    }
+
+    const notification = { title, body };
     await sendMulticast(tokens, notification, data);
     console.log(`Successfully sent welcome notification to user ID: ${userId}`);
   } catch (error) {
