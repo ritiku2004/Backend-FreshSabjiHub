@@ -22,3 +22,8 @@ uploads/
 
 # OS generated files
 .DS_Store
+
+# Scratch files and custom logs
+scratch_*
+error_log.txt
+request_logs.txt
