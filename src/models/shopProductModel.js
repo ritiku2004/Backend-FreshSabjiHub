@@ -15,6 +15,7 @@ const getInventoryByShopId = async (shopId) => {
     SELECT p.id as product_id, p.name as product_name, p.description, p.brand, 
            p.quantity, p.quantity_type, p.mrp_price as price, p.image_url, 
            p.category_id, c.name as category_name, p.discount_percentage,
+           p.type,
            COALESCE(sp.is_available, true) as is_available,
            GROUP_CONCAT(pc.category_id) as category_ids
     FROM products p

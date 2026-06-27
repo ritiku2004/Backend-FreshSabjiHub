@@ -7,6 +7,7 @@ router.post('/', authMiddleware.authenticateJWT, orderController.createOrder);
 router.get('/', authMiddleware.authenticateJWT, orderController.getUserOrders);
 router.post('/verify', authMiddleware.authenticateJWT, orderController.verifyPayment);
 router.post('/:id/retry', authMiddleware.authenticateJWT, orderController.retryPayment);
+router.get('/:id/invoice', authMiddleware.authenticateJWT, orderController.downloadInvoice);
 
 // Webhook endpoint is publicly exposed (no JWT required)
 router.post('/webhook', orderController.handleWebhook);

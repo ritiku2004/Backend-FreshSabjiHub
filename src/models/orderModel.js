@@ -30,6 +30,22 @@ const getOrderById = async (id) => {
   if (rows.length === 0) return null;
   const order = rows[0];
 
+  if (order.delivery_address) {
+    try {
+      const addressObj = JSON.parse(order.delivery_address);
+      order.address_line1 = addressObj.address_line1 || order.address_line1;
+      order.address_line2 = addressObj.address_line2 || order.address_line2;
+      order.city = addressObj.city || order.city;
+      order.state = addressObj.state || order.state;
+      order.receiver_name = addressObj.receiver_name || order.receiver_name;
+      order.receiver_mobile = addressObj.receiver_mobile || order.receiver_mobile;
+      order.latitude = addressObj.latitude || order.latitude;
+      order.longitude = addressObj.longitude || order.longitude;
+    } catch (e) {
+      console.error('Failed to parse delivery_address JSON', e);
+    }
+  }
+
   const [items] = await pool.query(`
     SELECT oi.*, p.mrp_price, p.image_url 
     FROM order_items oi
@@ -75,18 +91,26 @@ const calculateOrderDetails = async (userId, shopId, addressId, items, tipAmount
     }
   }
 
+  if (!addressIdToUse) {
+    throw new Error('An address is required to place an order.');
+  }
+
   let distance = 0;
+  let fullAddress = null;
   if (shopId && addressIdToUse) {
     const [shops] = await pool.query('SELECT latitude, longitude FROM shops WHERE id = ?', [shopId]);
     if (shops.length > 0 && shops[0].latitude && shops[0].longitude) {
-      const [addresses] = await pool.query('SELECT latitude, longitude FROM user_addresses WHERE id = ?', [addressIdToUse]);
-      if (addresses.length > 0 && addresses[0].latitude && addresses[0].longitude) {
+      const [addresses] = await pool.query('SELECT * FROM user_addresses WHERE id = ?', [addressIdToUse]);
+      if (addresses.length > 0) {
+        fullAddress = addresses[0];
+        if (addresses[0].latitude && addresses[0].longitude) {
         distance = await getRoadDistanceKm(
           parseFloat(shops[0].latitude), 
           parseFloat(shops[0].longitude),
           parseFloat(addresses[0].latitude),
           parseFloat(addresses[0].longitude)
         );
+        }
       }
     }
   }
@@ -98,7 +122,9 @@ const calculateOrderDetails = async (userId, shopId, addressId, items, tipAmount
     delivery_distance_rate: 5.00,
     free_delivery_threshold: 300.00,
     handling_fee: 15.00,
-    free_handling_threshold: 500.00
+    free_handling_threshold: 500.00,
+    global_discount_percentage: 0.00,
+    global_discount_threshold: 0.00
   };
 
   // 3. Fetch product details for items to compute correct subtotal using general pool query
@@ -147,7 +173,17 @@ const calculateOrderDetails = async (userId, shopId, addressId, items, tipAmount
   const calculatedDeliveryFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_delivery_threshold) ? 0 : (Number(config.delivery_base_charge) + (distance * Number(config.delivery_distance_rate))));
   const calculatedHandlingFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_handling_threshold) ? 0 : Number(config.handling_fee));
   const calculatedTaxAmount = 0; // GST completely removed
-  const calculatedGrandTotal = subtotal + calculatedDeliveryFee + calculatedHandlingFee + (Number(tipAmount) || 0) - (Number(discountAmount) || 0);
+  
+  // Calculate global discount
+  const discountPercentage = Number(config.global_discount_percentage);
+  const discountThreshold = Number(config.global_discount_threshold);
+  let globalDiscountAmount = 0;
+  
+  if (subtotal > 0 && subtotal >= discountThreshold && discountPercentage > 0) {
+    globalDiscountAmount = subtotal * (discountPercentage / 100);
+  }
+  
+  const calculatedGrandTotal = subtotal - globalDiscountAmount + calculatedDeliveryFee + calculatedHandlingFee + (Number(tipAmount) || 0) - (Number(discountAmount) || 0);
 
   return {
     subtotal,
@@ -157,8 +193,10 @@ const calculateOrderDetails = async (userId, shopId, addressId, items, tipAmount
     calculatedDeliveryFee,
     calculatedHandlingFee,
     calculatedTaxAmount,
+    globalDiscountAmount,
     calculatedGrandTotal,
-    addressIdToUse
+    addressIdToUse,
+    fullAddress
   };
 };
 
@@ -192,22 +230,24 @@ const createOrder = async (
 
       const [orderResult] = await connection.query(
         `INSERT INTO orders (
-          order_number, user_id, shop_id, address_id, total_amount, 
-          tip_amount, discount_amount, handling_fee, delivery_fee, tax_amount, 
+          order_number, user_id, shop_id, address_id, delivery_address, total_amount, 
+          tip_amount, discount_amount, handling_fee, delivery_fee, tax_amount, global_discount_amount,
           status, payment_status, payment_method, razorpay_payment_id, razorpay_order_id, 
           razorpay_signature, created_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           orderNumber, 
           userId, 
           shopId, 
           details.addressIdToUse || null, 
+          details.fullAddress ? JSON.stringify(details.fullAddress) : null,
           parseFloat(details.calculatedGrandTotal.toFixed(2)), 
           Number(tipAmount) || 0, 
           Number(discountAmount) || 0, 
           parseFloat(details.calculatedHandlingFee.toFixed(2)), 
           parseFloat(details.calculatedDeliveryFee.toFixed(2)), 
           parseFloat(details.calculatedTaxAmount.toFixed(2)),
+          parseFloat(details.globalDiscountAmount.toFixed(2)),
           initialStatus, 
           paymentStatus,
           paymentMethod,
@@ -273,6 +313,21 @@ const getOrdersByUserId = async (userId) => {
   `, [userId]);
 
   const orders = await Promise.all(rows.map(async (order) => {
+    if (order.delivery_address) {
+      try {
+        const addressObj = JSON.parse(order.delivery_address);
+        order.address_line1 = addressObj.address_line1 || order.address_line1;
+        order.address_line2 = addressObj.address_line2 || order.address_line2;
+        order.city = addressObj.city || order.city;
+        order.state = addressObj.state || order.state;
+        order.receiver_name = addressObj.receiver_name || order.receiver_name;
+        order.receiver_mobile = addressObj.receiver_mobile || order.receiver_mobile;
+        order.address_title = addressObj.title || order.address_title;
+      } catch (e) {
+        console.error('Failed to parse delivery_address JSON', e);
+      }
+    }
+
     const [itemRows] = await pool.query(`
       SELECT oi.*, p.image_url
       FROM order_items oi

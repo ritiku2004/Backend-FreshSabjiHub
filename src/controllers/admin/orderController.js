@@ -1,5 +1,5 @@
 const { orderModel } = require('../../models');
-const { notificationService } = require('../../services');
+const { notificationService, invoiceService } = require('../../services');
 
 const getOrders = async (req, res) => {
   try {
@@ -60,8 +60,28 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
+const downloadInvoice = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const order = await orderModel.getOrderById(id);
+    if (!order) {
+      return res.status(404).json({ success: false, error: 'Order not found' });
+    }
+
+    const pdfBuffer = await invoiceService.generateInvoicePDF(order);
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename=invoice-${order.order_number}.pdf`);
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error('Download Invoice Error:', error);
+    res.status(500).json({ success: false, error: 'Failed to generate invoice' });
+  }
+};
+
 module.exports = {
   getOrders,
   getOrderById,
-  updateOrderStatus
+  updateOrderStatus,
+  downloadInvoice
 };

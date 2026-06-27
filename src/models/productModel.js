@@ -26,7 +26,7 @@ const getProductById = async (id) => {
 };
 
 const createProduct = async (productData, featuresData = []) => {
-  const { category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active, discount_percentage } = productData;
+  const { category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active, discount_percentage, type } = productData;
   
   const connection = await pool.getConnection();
   try {
@@ -34,9 +34,9 @@ const createProduct = async (productData, featuresData = []) => {
 
     const [result] = await connection.query(
       'INSERT INTO products ' +
-      '(category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active, discount_percentage) ' +
-      'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active ?? true, discount_percentage ?? 0.00]
+      '(category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active, discount_percentage, `type`) ' +
+      'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active ?? true, discount_percentage ?? 0.00, type || 'general']
     );
     const productId = result.insertId;
 
@@ -65,7 +65,7 @@ const createProduct = async (productData, featuresData = []) => {
 };
 
 const updateProduct = async (id, productData, featuresData = null) => {
-  const { category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active, discount_percentage } = productData;
+  const { category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active, discount_percentage, type } = productData;
   
   const connection = await pool.getConnection();
   try {
@@ -73,9 +73,9 @@ const updateProduct = async (id, productData, featuresData = null) => {
 
     await connection.query(
       'UPDATE products ' +
-      'SET category_id=?, name=?, description=?, brand=?, mrp_price=?, quantity=?, quantity_type=?, sku=?, image_url=?, is_active=?, discount_percentage=? ' +
+      'SET category_id=?, name=?, description=?, brand=?, mrp_price=?, quantity=?, quantity_type=?, sku=?, image_url=?, is_active=?, discount_percentage=?, `type`=? ' +
       'WHERE id=?',
-      [category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active ?? true, discount_percentage ?? 0.00, id]
+      [category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active ?? true, discount_percentage ?? 0.00, type || 'general', id]
     );
 
     // Sync to product_categories

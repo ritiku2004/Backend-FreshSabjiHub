@@ -5,5 +5,6 @@ const { orderController } = require('../../../controllers/admin');
 router.get('/', orderController.getOrders);
 router.get('/:id', orderController.getOrderById);
 router.put('/:id', orderController.updateOrderStatus);
+router.get('/:id/invoice', orderController.downloadInvoice);
 
 module.exports = router;

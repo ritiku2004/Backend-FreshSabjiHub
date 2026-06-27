@@ -63,7 +63,9 @@ const getCartByUserId = async (userId, activeShopId = null, activeAddressId = nu
       delivery_distance_rate: 5.00,
       free_delivery_threshold: 300.00,
       handling_fee: 15.00,
-      free_handling_threshold: 500.00
+      free_handling_threshold: 500.00,
+      global_discount_percentage: 0.00,
+      global_discount_threshold: 0.00
     };
 
     let distance = 0;
@@ -95,11 +97,24 @@ const getCartByUserId = async (userId, activeShopId = null, activeAddressId = nu
     const deliveryFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_delivery_threshold) ? 0 : (Number(config.delivery_base_charge) + (distance * Number(config.delivery_distance_rate))));
     const handlingFee = subtotal === 0 ? 0 : (subtotal >= Number(config.free_handling_threshold) ? 0 : Number(config.handling_fee));
     const taxAmount = 0; // GST completely removed
-    const grandTotal = subtotal + deliveryFee + handlingFee;
+    
+    // Calculate global discount on subtotal
+    const discountPercentage = Number(config.global_discount_percentage);
+    const discountThreshold = Number(config.global_discount_threshold);
+    let globalDiscountAmount = 0;
+    
+    if (subtotal > 0 && subtotal >= discountThreshold && discountPercentage > 0) {
+      globalDiscountAmount = subtotal * (discountPercentage / 100);
+    }
+    
+    const grandTotal = subtotal - globalDiscountAmount + deliveryFee + handlingFee;
 
     cart.pricing = {
       subtotal: parseFloat(subtotal.toFixed(2)),
       savings: parseFloat(savings.toFixed(2)),
+      globalDiscountAmount: parseFloat(globalDiscountAmount.toFixed(2)),
+      globalDiscountPercentage: discountPercentage,
+      globalDiscountThreshold: discountThreshold,
       deliveryFee: parseFloat(deliveryFee.toFixed(2)),
       handlingFee: parseFloat(handlingFee.toFixed(2)),
       taxAmount: parseFloat(taxAmount.toFixed(2)),

@@ -1,6 +1,7 @@
 const { categoryModel, productModel, shopModel, bannerModel } = require('../../models');
 const { responseHelper } = require('../../utils');
 const { haversineDistanceKm } = require('../../services/distanceService');
+const pool = require('../../config/db');
 
 const getBanners = async (req, res) => {
   try {
@@ -62,8 +63,11 @@ const getNearestShop = async (req, res) => {
       }
     }
 
-    if (minDistance > 15) {
-      return responseHelper.sendError(res, 404, `Nearest shop is outside 15km radius (${minDistance.toFixed(2)} km)`);
+    const [configRows] = await pool.query('SELECT max_delivery_radius_km FROM charges_config WHERE id = 1');
+    const maxRadius = configRows.length > 0 ? Number(configRows[0].max_delivery_radius_km) : 15;
+
+    if (minDistance > maxRadius) {
+      return responseHelper.sendError(res, 404, `Nearest shop is outside ${maxRadius}km radius (${minDistance.toFixed(2)} km)`);
     }
 
     const responseData = {

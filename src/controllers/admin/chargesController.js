@@ -21,15 +21,20 @@ const updateCharges = async (req, res) => {
       delivery_distance_rate, 
       free_delivery_threshold, 
       handling_fee, 
-      free_handling_threshold 
+      free_handling_threshold,
+      global_discount_percentage,
+      global_discount_threshold,
+      max_delivery_radius_km
     } = req.body;
-
     if (
       delivery_base_charge === undefined || 
       delivery_distance_rate === undefined || 
       free_delivery_threshold === undefined || 
       handling_fee === undefined || 
-      free_handling_threshold === undefined
+      free_handling_threshold === undefined ||
+      global_discount_percentage === undefined ||
+      global_discount_threshold === undefined ||
+      max_delivery_radius_km === undefined
     ) {
       return responseHelper.sendError(res, 400, 'All fields are required');
     }
@@ -40,14 +45,20 @@ const updateCharges = async (req, res) => {
         delivery_distance_rate = ?, 
         free_delivery_threshold = ?, 
         handling_fee = ?, 
-        free_handling_threshold = ? 
+        free_handling_threshold = ?,
+        global_discount_percentage = ?,
+        global_discount_threshold = ?,
+        max_delivery_radius_km = ?
        WHERE id = 1`,
       [
         Number(delivery_base_charge), 
         Number(delivery_distance_rate), 
         Number(free_delivery_threshold), 
         Number(handling_fee), 
-        Number(free_handling_threshold)
+        Number(free_handling_threshold),
+        Number(global_discount_percentage),
+        Number(global_discount_threshold),
+        Number(max_delivery_radius_km)
       ]
     );
 

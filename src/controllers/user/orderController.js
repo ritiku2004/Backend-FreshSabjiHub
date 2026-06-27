@@ -1,6 +1,6 @@
 const { orderModel } = require('../../models');
 const { responseHelper, razorpay } = require('../../utils');
-const { notificationService } = require('../../services');
+const { notificationService, invoiceService } = require('../../services');
 const crypto = require('crypto');
 
 const createOrder = async (req, res) => {
@@ -352,10 +352,36 @@ const getUserOrders = async (req, res) => {
   }
 };
 
+
+const downloadInvoice = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const order = await orderModel.getOrderById(id);
+    if (!order) {
+      return responseHelper.sendError(res, 404, 'Order not found');
+    }
+
+    // Verify order belongs to user
+    if (order.user_id !== req.user.id) {
+      return responseHelper.sendError(res, 403, 'Unauthorized');
+    }
+
+    const pdfBuffer = await invoiceService.generateInvoicePDF(order);
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename=invoice-${order.order_number}.pdf`);
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error('Download Invoice Error:', error);
+    return responseHelper.sendError(res, 500, 'Failed to generate invoice', error);
+  }
+};
+
 module.exports = {
   createOrder,
   verifyPayment,
   handleWebhook,
   retryPayment,
-  getUserOrders
+  getUserOrders,
+  downloadInvoice
 };

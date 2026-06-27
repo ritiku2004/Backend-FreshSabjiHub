@@ -16,7 +16,7 @@ const verifyAdmin = (req, res, next) => {
     req.admin = decoded;
     next();
   } catch (ex) {
-    return responseHelper.sendError(res, 400, 'Invalid token.');
+    return responseHelper.sendError(res, 401, 'Invalid token.');
   }
 };
 
@@ -58,7 +58,7 @@ const authenticateJWT = async (req, res, next) => {
     req.user = decoded;
     next();
   } catch (ex) {
-    return responseHelper.sendError(res, 400, 'Invalid token.');
+    return responseHelper.sendError(res, 401, 'Invalid or expired token.');
   }
 };
 
