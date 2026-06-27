@@ -334,6 +334,16 @@ const generateInvoicePDF = async (order) => {
   </html>
   `;
 
+  // Try to fix Chrome executable permissions dynamically to prevent EACCES errors on shared hosting
+  try {
+    const executablePath = puppeteer.executablePath();
+    if (fs.existsSync(executablePath)) {
+      fs.chmodSync(executablePath, '755');
+    }
+  } catch (e) {
+    console.warn("Could not set Chrome permissions automatically:", e);
+  }
+
   // Launch puppeteer and generate PDF
   const browser = await puppeteer.launch({
     headless: 'new',
