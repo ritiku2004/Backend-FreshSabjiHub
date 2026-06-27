@@ -343,7 +343,7 @@ const generateInvoicePDF = async (order) => {
   const page = await browser.newPage();
   
   // Set content and wait for network idle to ensure fonts/images load
-  await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+  await page.setContent(htmlContent, { waitUntil: 'networkidle2', timeout: 30000 });
 
   // Generate PDF buffer
   const pdfBuffer = await page.pdf({
