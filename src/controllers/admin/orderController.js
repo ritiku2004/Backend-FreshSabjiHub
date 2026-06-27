@@ -68,14 +68,12 @@ const downloadInvoice = async (req, res) => {
       return res.status(404).json({ success: false, error: 'Order not found' });
     }
 
-    const pdfBuffer = await invoiceService.generateInvoicePDF(order);
+    const htmlContent = await invoiceService.generateInvoiceHTML(order);
 
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename=invoice-${order.order_number}.pdf`);
-    res.send(pdfBuffer);
+    res.status(200).json({ success: true, html: htmlContent });
   } catch (error) {
     console.error('Download Invoice Error:', error);
-    res.status(500).json({ success: false, error: 'Failed to generate invoice' });
+    res.status(500).json({ success: false, error: 'Failed to generate invoice HTML' });
   }
 };
 

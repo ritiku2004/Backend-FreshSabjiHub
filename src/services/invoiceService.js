@@ -1,8 +1,7 @@
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
-const generateInvoicePDF = async (order) => {
+const generateInvoiceHTML = async (order) => {
   // Read logo and convert to base64 for embedding
   const logoPath = path.join(__dirname, '../assets/logo.png');
   let logoBase64 = '';
@@ -334,44 +333,10 @@ const generateInvoicePDF = async (order) => {
   </html>
   `;
 
-  // Try to fix Chrome executable permissions dynamically to prevent EACCES errors on shared hosting
-  try {
-    const executablePath = puppeteer.executablePath();
-    if (fs.existsSync(executablePath)) {
-      fs.chmodSync(executablePath, '755');
-    }
-  } catch (e) {
-    console.warn("Could not set Chrome permissions automatically:", e);
-  }
-
-  // Launch puppeteer and generate PDF
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-  });
-
-  const page = await browser.newPage();
-  
-  // Set content and wait for network idle to ensure fonts/images load
-  await page.setContent(htmlContent, { waitUntil: 'networkidle2', timeout: 30000 });
-
-  // Generate PDF buffer
-  const pdfBuffer = await page.pdf({
-    format: 'A4',
-    printBackground: true,
-    margin: {
-      top: '20px',
-      bottom: '20px',
-      left: '20px',
-      right: '20px'
-    }
-  });
-
-  await browser.close();
-
-  return pdfBuffer;
+  // Return the raw HTML string instead of launching Puppeteer
+  return htmlContent;
 };
 
 module.exports = {
-  generateInvoicePDF
+  generateInvoiceHTML
 };

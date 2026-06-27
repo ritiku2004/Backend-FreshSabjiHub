@@ -366,14 +366,12 @@ const downloadInvoice = async (req, res) => {
       return responseHelper.sendError(res, 403, 'Unauthorized');
     }
 
-    const pdfBuffer = await invoiceService.generateInvoicePDF(order);
+    const htmlContent = await invoiceService.generateInvoiceHTML(order);
 
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename=invoice-${order.order_number}.pdf`);
-    res.send(pdfBuffer);
+    res.status(200).json({ success: true, html: htmlContent });
   } catch (error) {
     console.error('Download Invoice Error:', error);
-    return responseHelper.sendError(res, 500, 'Failed to generate invoice', error);
+    return responseHelper.sendError(res, 500, 'Failed to generate invoice HTML', error);
   }
 };
 
