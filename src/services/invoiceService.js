@@ -21,12 +21,14 @@ const generateInvoiceHTML = async (order) => {
   }
 
   const orderDate = new Date(order.created_at).toLocaleDateString('en-IN', {
+    timeZone: 'Asia/Kolkata',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
 
   const orderTime = new Date(order.created_at).toLocaleTimeString('en-IN', {
+    timeZone: 'Asia/Kolkata',
     hour: '2-digit',
     minute: '2-digit',
   });
