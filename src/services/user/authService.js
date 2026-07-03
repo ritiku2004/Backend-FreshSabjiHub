@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { userModel, otpModel } = require('../../models');
 const { emailSender } = require('../../utils');
 const path = require('path');
+const { sendSMS } = require('../smsService');
 require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
 
 const generateAndSendOtp = async (phone) => {
@@ -14,12 +15,16 @@ const generateAndSendOtp = async (phone) => {
   
   await otpModel.saveOtp(phone, otpCode, expiresAt);
   
-  // Log the OTP in backend terminal for testing/production for now
-  console.log(`\n==========================================`);
-  console.log(`[AUTH] OTP generated for Mobile: ${phone}`);
-  console.log(`[AUTH] OTP Code: ${otpCode}`);
-  console.log(`==========================================\n`);
-  
+  // Send SMS via MSG91 (only if not a test number)
+  if (!phone.startsWith('99999') && !phone.endsWith('00000')) {
+      try {
+          await sendSMS(phone, otpCode);
+      } catch (err) {
+          console.error("Failed to send OTP via SMS:", err);
+          // throw new Error("Could not send SMS"); // Optional: throw error if critical
+      }
+  }
+
   return true; // Do not return the actual OTP code to the frontend
 };
 
