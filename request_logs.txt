@@ -278149,3 +278149,1062 @@ Body: {
   }
 }
 ---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:04:52.160Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:04:52.166Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:06:31.203Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:06:32.295Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1&addressId=9",
+  "query": {
+    "userId": "3",
+    "shopId": "1",
+    "addressId": "9"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:06:32.513Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=4&addressId=9",
+  "query": {
+    "userId": "3",
+    "shopId": "4",
+    "addressId": "9"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 300.03,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 369.03,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 58.01
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:07:03.530Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_55w38ylx91pcm8v02rxugn",
+  "query": {
+    "guestId": "guest_55w38ylx91pcm8v02rxugn"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_55w38ylx91pcm8v02rxugn",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:09:23.963Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/merge",
+  "query": {}
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:09:24.303Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3",
+  "query": {
+    "userId": "3"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Carts merged successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:09:25.770Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3",
+  "query": {
+    "userId": "3"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:09:26.051Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&addressId=9",
+  "query": {
+    "userId": "3",
+    "addressId": "9"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:09:26.256Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=4&addressId=9",
+  "query": {
+    "userId": "3",
+    "shopId": "4",
+    "addressId": "9"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:12:44.147Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:12:44.202Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1&addressId=9",
+  "query": {
+    "userId": "3",
+    "shopId": "1",
+    "addressId": "9"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:12:45.112Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=4&addressId=9",
+  "query": {
+    "userId": "3",
+    "shopId": "4",
+    "addressId": "9"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 300.03,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 369.03,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 58.01
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:32:44.249Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=2",
+  "query": {
+    "userId": "2"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "2",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:32:45.339Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_87tf9q8jmmtdfjhf6jil",
+  "query": {
+    "guestId": "guest_87tf9q8jmmtdfjhf6jil"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_87tf9q8jmmtdfjhf6jil",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:34:24.476Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_87tf9q8jmmtdfjhf6jil&addressId=addr_410249",
+  "query": {
+    "guestId": "guest_87tf9q8jmmtdfjhf6jil",
+    "addressId": "addr_410249"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_87tf9q8jmmtdfjhf6jil",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:34:25.979Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_87tf9q8jmmtdfjhf6jil&shopId=5&addressId=addr_410249",
+  "query": {
+    "guestId": "guest_87tf9q8jmmtdfjhf6jil",
+    "shopId": "5",
+    "addressId": "addr_410249"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_87tf9q8jmmtdfjhf6jil",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:34:51.976Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_87tf9q8jmmtdfjhf6jil&shopId=5&addressId=addr_410249",
+  "query": {
+    "guestId": "guest_87tf9q8jmmtdfjhf6jil",
+    "shopId": "5",
+    "addressId": "addr_410249"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_87tf9q8jmmtdfjhf6jil",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:35:25.859Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/merge",
+  "query": {}
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Carts merged successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T07:35:29.479Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=5&addressId=addr_410249",
+  "query": {
+    "userId": "3",
+    "shopId": "5",
+    "addressId": "addr_410249"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------

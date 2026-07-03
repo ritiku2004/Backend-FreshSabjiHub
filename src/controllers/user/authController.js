@@ -3,12 +3,18 @@ const { responseHelper } = require('../../utils');
 
 const sendOtp = async (req, res) => {
   try {
-    const { email } = req.body;
-    if (!email) {
-      return responseHelper.sendError(res, 400, 'Email address is required');
+    const { phone } = req.body;
+    if (!phone) {
+      return responseHelper.sendError(res, 400, 'Phone number is required');
     }
-    await authService.generateAndSendOtp(email);
-    return responseHelper.sendSuccess(res, 200, 'OTP sent successfully to your email');
+    // Simple 10-digit validation
+    const cleanPhone = phone.trim().replace(/[^0-9]/g, '');
+    if (cleanPhone.length < 10) {
+      return responseHelper.sendError(res, 400, 'Please enter a valid 10-digit phone number');
+    }
+
+    await authService.generateAndSendOtp(cleanPhone);
+    return responseHelper.sendSuccess(res, 200, 'OTP sent successfully to your phone number');
   } catch (error) {
     console.error('Send OTP Error:', error);
     return responseHelper.sendError(res, 500, 'Failed to send OTP');
@@ -17,12 +23,13 @@ const sendOtp = async (req, res) => {
 
 const verifyOtpAndLogin = async (req, res) => {
   try {
-    const { email, otp } = req.body;
-    if (!email || !otp) {
-      return responseHelper.sendError(res, 400, 'Email address and OTP are required');
+    const { phone, otp } = req.body;
+    if (!phone || !otp) {
+      return responseHelper.sendError(res, 400, 'Phone number and OTP are required');
     }
 
-    const result = await authService.verifyCustomOtpAndLogin(email, otp);
+    const cleanPhone = phone.trim().replace(/[^0-9]/g, '');
+    const result = await authService.verifyCustomOtpAndLogin(cleanPhone, otp);
     return responseHelper.sendSuccess(res, 200, 'Login successful', result);
   } catch (error) {
     console.error('Verify OTP Error:', error);
