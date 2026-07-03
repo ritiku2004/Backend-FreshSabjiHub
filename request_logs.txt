@@ -279208,3 +279208,462 @@ Body: {
   }
 }
 ---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:11:15.759Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1",
+  "query": {
+    "userId": "3",
+    "shopId": "1"
+  }
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:11:16.216Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=1&addressId=17",
+  "query": {
+    "userId": "3",
+    "shopId": "1",
+    "addressId": "17"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 10,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 79,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:11:16.526Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=3&shopId=4&addressId=17",
+  "query": {
+    "userId": "3",
+    "shopId": "4",
+    "addressId": "17"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 25.73,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 94.73,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 3.15
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "id": 97,
+    "user_id": 3,
+    "shop_id": 4,
+    "created_at": "2026-06-28T16:25:06.000Z",
+    "updated_at": "2026-06-28T16:25:06.000Z",
+    "guest_id": null,
+    "items": [
+      {
+        "id": 222,
+        "cart_id": 97,
+        "product_id": 1,
+        "quantity": 2,
+        "created_at": "2026-06-28T16:25:06.000Z",
+        "updated_at": "2026-06-28T16:25:07.000Z",
+        "price": "32.00",
+        "name": "Fresh Potato (Aloo)",
+        "brand": "",
+        "size": "1.00",
+        "quantity_type": "kg",
+        "image_url": "https://media.freshsabjihub.com/products/image-1781897926984-292116777.webp",
+        "discount_percentage": "0.00",
+        "is_available": 1
+      }
+    ],
+    "pricing": {
+      "subtotal": 64,
+      "savings": 0,
+      "globalDiscountAmount": 0,
+      "globalDiscountPercentage": 10,
+      "globalDiscountThreshold": 500,
+      "deliveryFee": 301.18,
+      "handlingFee": 5,
+      "taxAmount": 0,
+      "grandTotal": 370.18,
+      "freeDeliveryThreshold": 300,
+      "freeHandlingThreshold": 500,
+      "distanceKm": 58.24
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:11:27.512Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_ku340ul4twz9w6f9ea4s",
+  "query": {
+    "guestId": "guest_ku340ul4twz9w6f9ea4s"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_ku340ul4twz9w6f9ea4s",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:11:57.869Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/merge",
+  "query": {}
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:11:57.919Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1",
+  "query": {
+    "userId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Carts merged successfully",
+  "data": null
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:11:59.224Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1",
+  "query": {
+    "userId": "1"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:11:59.587Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&addressId=20",
+  "query": {
+    "userId": "1",
+    "addressId": "20"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:11:59.714Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=1&shopId=2&addressId=20",
+  "query": {
+    "userId": "1",
+    "shopId": "2",
+    "addressId": "20"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "1",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:19:59.747Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_yy0pe92znmdm578temrf1i",
+  "query": {
+    "guestId": "guest_yy0pe92znmdm578temrf1i"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_yy0pe92znmdm578temrf1i",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:20:27.492Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/merge",
+  "query": {}
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:20:27.809Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=10",
+  "query": {
+    "userId": "10"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "10",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Carts merged successfully",
+  "data": null
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-03T12:20:28.054Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=10",
+  "query": {
+    "userId": "10"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "10",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
