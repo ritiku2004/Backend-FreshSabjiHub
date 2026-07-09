@@ -280005,3 +280005,549 @@ Body: {
   }
 }
 ---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-08T13:11:02.130Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-08T13:13:38.277Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-08T13:15:54.369Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-08T13:15:55.686Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-08T13:21:09.536Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-08T13:24:56.801Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-08T13:36:29.630Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:35:38.039Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:37:20.481Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:39:30.498Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:41:25.696Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:44:51.132Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:53:24.467Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?guestId=guest_2es5frz7p69fh51sksw4bj",
+  "query": {
+    "guestId": "guest_2es5frz7p69fh51sksw4bj"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": null,
+    "guest_id": "guest_2es5frz7p69fh51sksw4bj",
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:53:51.831Z",
+  "method": "POST",
+  "url": "/api/v1/user/cart/merge",
+  "query": {}
+}
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:53:52.146Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=11",
+  "query": {
+    "userId": "11"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "11",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Carts merged successfully",
+  "data": null
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:53:52.500Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=11",
+  "query": {
+    "userId": "11"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "11",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:53:52.592Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=11&addressId=25",
+  "query": {
+    "userId": "11",
+    "addressId": "25"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "11",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
+
+--- REQUEST ---
+{
+  "timestamp": "2026-07-09T12:53:52.754Z",
+  "method": "GET",
+  "url": "/api/v1/user/cart?userId=11&shopId=4&addressId=25",
+  "query": {
+    "userId": "11",
+    "shopId": "4",
+    "addressId": "25"
+  }
+}
+--- RESPONSE ---
+Status: 200
+Body: {
+  "success": true,
+  "message": "Cart fetched successfully",
+  "data": {
+    "user_id": "11",
+    "guest_id": null,
+    "items": [],
+    "pricing": {
+      "subtotal": 0,
+      "savings": 0,
+      "deliveryFee": 0,
+      "handlingFee": 0,
+      "grandTotal": 0,
+      "freeDeliveryThreshold": 0,
+      "freeHandlingThreshold": 0
+    }
+  }
+}
+---------------
