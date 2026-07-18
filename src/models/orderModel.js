@@ -463,6 +463,14 @@ const getOrderByRazorpayOrderId = async (razorpayOrderId) => {
   return rows.length > 0 ? rows[0] : null;
 };
 
+const addOrderReview = async (orderId, rating, comment) => {
+  const [result] = await pool.query(
+    'UPDATE orders SET rating = ?, review_comment = ? WHERE id = ?',
+    [rating, comment, orderId]
+  );
+  return result.affectedRows > 0;
+};
+
 module.exports = {
   getAllOrders,
   getOrderById,
@@ -475,5 +483,6 @@ module.exports = {
   recordPaymentLog,
   getPaymentLogsByOrderId,
   getOrderByRazorpayOrderId,
-  calculateOrderDetails
+  calculateOrderDetails,
+  addOrderReview
 };

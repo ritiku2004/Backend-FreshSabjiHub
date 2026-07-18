@@ -375,11 +375,51 @@ const downloadInvoice = async (req, res) => {
   }
 };
 
+const submitOrderReview = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const orderId = req.params.id;
+    const { rating, comment } = req.body;
+
+    if (!rating || rating < 1 || rating > 5) {
+      return responseHelper.sendError(res, 400, 'Valid rating between 1 and 5 is required');
+    }
+
+    const order = await orderModel.getOrderById(orderId);
+    if (!order) {
+      return responseHelper.sendError(res, 404, 'Order not found');
+    }
+
+    if (order.user_id !== userId) {
+      return responseHelper.sendError(res, 403, 'Unauthorized to review this order');
+    }
+
+    if (order.status !== 'Delivered') {
+      return responseHelper.sendError(res, 400, 'Only delivered orders can be reviewed');
+    }
+
+    if (order.rating !== null && order.rating !== undefined) {
+      return responseHelper.sendError(res, 400, 'Review already submitted for this order');
+    }
+
+    const success = await orderModel.addOrderReview(order.id, rating, comment || null);
+    if (!success) {
+      return responseHelper.sendError(res, 500, 'Failed to submit review');
+    }
+
+    return responseHelper.sendSuccess(res, 200, { message: 'Review submitted successfully' });
+  } catch (error) {
+    console.error('Submit review error:', error);
+    return responseHelper.sendError(res, 500, 'Failed to submit review');
+  }
+};
+
 module.exports = {
   createOrder,
   verifyPayment,
   handleWebhook,
   retryPayment,
   getUserOrders,
-  downloadInvoice
+  downloadInvoice,
+  submitOrderReview
 };
