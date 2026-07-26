@@ -28,6 +28,16 @@ const getProductById = async (id) => {
 const createProduct = async (productData, featuresData = []) => {
   const { category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active, discount_percentage, type } = productData;
   
+  // Auto-generate SKU if not provided
+  let finalSku = sku && String(sku).trim() !== '' ? sku : null;
+  if (!finalSku) {
+    const namePrefix = name ? name.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, 'X') : 'PRD';
+    finalSku = `${namePrefix}-${Math.floor(100000 + Math.random() * 900000)}`;
+  }
+  const finalBrand = brand && String(brand).trim() !== '' ? brand : null;
+  const finalDescription = description && String(description).trim() !== '' ? description : null;
+  const finalImageUrl = image_url && String(image_url).trim() !== '' ? image_url : null;
+  
   const connection = await pool.getConnection();
   try {
     await connection.beginTransaction();
@@ -36,7 +46,7 @@ const createProduct = async (productData, featuresData = []) => {
       'INSERT INTO products ' +
       '(category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active, discount_percentage, `type`) ' +
       'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active ?? true, discount_percentage ?? 0.00, type || 'general']
+      [category_id, name, finalDescription, finalBrand, mrp_price, quantity, quantity_type, finalSku, finalImageUrl, is_active ?? true, discount_percentage ?? 0.00, type || 'general']
     );
     const productId = result.insertId;
 
@@ -67,6 +77,11 @@ const createProduct = async (productData, featuresData = []) => {
 const updateProduct = async (id, productData, featuresData = null) => {
   const { category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active, discount_percentage, type } = productData;
   
+  const finalSku = sku && String(sku).trim() !== '' ? sku : null;
+  const finalBrand = brand && String(brand).trim() !== '' ? brand : null;
+  const finalDescription = description && String(description).trim() !== '' ? description : null;
+  const finalImageUrl = image_url && String(image_url).trim() !== '' ? image_url : null;
+  
   const connection = await pool.getConnection();
   try {
     await connection.beginTransaction();
@@ -75,7 +90,7 @@ const updateProduct = async (id, productData, featuresData = null) => {
       'UPDATE products ' +
       'SET category_id=?, name=?, description=?, brand=?, mrp_price=?, quantity=?, quantity_type=?, sku=?, image_url=?, is_active=?, discount_percentage=?, `type`=? ' +
       'WHERE id=?',
-      [category_id, name, description, brand, mrp_price, quantity, quantity_type, sku, image_url, is_active ?? true, discount_percentage ?? 0.00, type || 'general', id]
+      [category_id, name, finalDescription, finalBrand, mrp_price, quantity, quantity_type, finalSku, finalImageUrl, is_active ?? true, discount_percentage ?? 0.00, type || 'general', id]
     );
 
     // Sync to product_categories
