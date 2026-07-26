@@ -7,6 +7,7 @@ const getAllOrders = async () => {
     FROM orders o
     JOIN users u ON o.user_id = u.id
     JOIN shops s ON o.shop_id = s.id
+    WHERE o.status != 'Pending Payment'
     ORDER BY o.created_at DESC
   `);
   return rows;
@@ -67,7 +68,7 @@ const getOrdersByShopId = async (shopId) => {
     SELECT o.*, u.first_name, u.last_name 
     FROM orders o
     JOIN users u ON o.user_id = u.id
-    WHERE o.shop_id = ?
+    WHERE o.shop_id = ? AND o.status != 'Pending Payment'
     ORDER BY o.created_at DESC
   `, [shopId]);
   return rows;
@@ -221,7 +222,7 @@ const createOrder = async (
 
     const orderNumber = 'ORD' + Math.floor(100000 + Math.random() * 900000);
     const now = new Date();
-    const initialStatus = 'Placed'; // Since order creation only happens once payment is complete (online) or accepted (COD)
+    const initialStatus = (paymentMethod === 'ONLINE' && paymentStatus === 'PENDING') ? 'Pending Payment' : 'Placed';
     
     // Connect and run quick transaction for SQL insertions, inventory reduction, and cart deletion
     const connection = await pool.getConnection();
@@ -259,6 +260,8 @@ const createOrder = async (
       );
       const orderId = orderResult.insertId;
 
+      const shouldFinalize = paymentMethod === 'COD' || paymentStatus === 'PAID';
+
       for (const item of details.items) {
         let pId = item.productId || item.id;
         if (typeof pId === 'string' && pId.startsWith('p')) {
@@ -271,15 +274,19 @@ const createOrder = async (
           [orderId, pId, item.name || item.product_name, item.quantity, item.price]
         );
 
-        // Decrement stock_quantity in products table
-        await connection.query(
-          'UPDATE products SET stock_quantity = GREATEST(0, stock_quantity - ?) WHERE id = ?',
-          [item.quantity, pId]
-        );
+        if (shouldFinalize) {
+          // Decrement stock_quantity in products table
+          await connection.query(
+            'UPDATE products SET stock_quantity = GREATEST(0, stock_quantity - ?) WHERE id = ?',
+            [item.quantity, pId]
+          );
+        }
       }
 
-      // Clear the user's cart
-      await connection.query('DELETE FROM carts WHERE user_id = ?', [userId]);
+      if (shouldFinalize) {
+        // Clear the user's cart
+        await connection.query('DELETE FROM carts WHERE user_id = ?', [userId]);
+      }
 
       await connection.commit();
       
@@ -308,7 +315,7 @@ const getOrdersByUserId = async (userId) => {
     FROM orders o
     JOIN shops s ON o.shop_id = s.id
     LEFT JOIN user_addresses a ON o.address_id = a.id
-    WHERE o.user_id = ?
+    WHERE o.user_id = ? AND o.status != 'Pending Payment'
     ORDER BY o.created_at DESC
   `, [userId]);
 

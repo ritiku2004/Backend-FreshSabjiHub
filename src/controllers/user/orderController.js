@@ -59,9 +59,38 @@ const createOrder = async (req, res) => {
             console.log(`[Mock Mode] Generated mock Razorpay Order: ${rzpOrderId}`);
           }
 
+          // Create the order in the database with PENDING status
+          const orderData = await orderModel.createOrder(
+            userId,
+            shopId,
+            addressId,
+            totalAmount,
+            items,
+            tipAmount,
+            discountAmount,
+            handlingFee,
+            deliveryFee,
+            'ONLINE',
+            'PENDING',
+            null,
+            rzpOrderId,
+            null
+          );
+
+          // Log the order placement
+          await orderModel.recordPaymentLog(
+            orderData.orderId, 
+            rzpOrderId, 
+            null, 
+            'order_created_intent', 
+            { paymentMethod: 'ONLINE', initialStatus: orderData.status }
+          );
+
           return responseHelper.sendSuccess(res, 201, 'Payment intent created', {
             paymentRequired: true,
             razorpayOrderId: rzpOrderId,
+            orderId: orderData.orderId,
+            orderNumber: orderData.orderNumber,
             amount: details.calculatedGrandTotal,
             amountPaise: amountPaise,
             razorpayKeyId: keysConfigured ? process.env.RAZORPAY_KEY_ID : 'rzp_test_mock_key'
@@ -97,23 +126,51 @@ const createOrder = async (req, res) => {
           return responseHelper.sendError(res, 400, 'Payment verification signature mismatch');
         }
 
-        // Create the order in the database with PAID status
-        const orderData = await orderModel.createOrder(
-          userId,
-          shopId,
-          addressId,
-          totalAmount,
-          items,
-          tipAmount,
-          discountAmount,
-          handlingFee,
-          deliveryFee,
-          'ONLINE',
-          'PAID',
-          razorpayPaymentId,
-          razorpayOrderId,
-          razorpaySignature
-        );
+        let orderData = null;
+        let isNewOrder = false;
+
+        // Check if the order already exists by razorpayOrderId
+        const existingOrder = await orderModel.getOrderByRazorpayOrderId(razorpayOrderId);
+        if (existingOrder) {
+          // Confirm payment on existing order
+          if (existingOrder.payment_status !== 'Paid') {
+            const result = await orderModel.verifyAndConfirmPayment(existingOrder.id, razorpayPaymentId, razorpaySignature);
+            orderData = {
+              orderId: result.order.id,
+              orderNumber: result.order.order_number,
+              status: result.order.status,
+              createdAt: existingOrder.created_at
+            };
+            isNewOrder = !result.alreadyPaid;
+          } else {
+            // Already paid
+            orderData = {
+              orderId: existingOrder.id,
+              orderNumber: existingOrder.order_number,
+              status: existingOrder.status,
+              createdAt: existingOrder.created_at
+            };
+          }
+        } else {
+          // Fallback: Create the order in the database with PAID status
+          orderData = await orderModel.createOrder(
+            userId,
+            shopId,
+            addressId,
+            totalAmount,
+            items,
+            tipAmount,
+            discountAmount,
+            handlingFee,
+            deliveryFee,
+            'ONLINE',
+            'PAID',
+            razorpayPaymentId,
+            razorpayOrderId,
+            razorpaySignature
+          );
+          isNewOrder = true;
+        }
 
         // Record payment log
         await orderModel.recordPaymentLog(
@@ -124,11 +181,13 @@ const createOrder = async (req, res) => {
           { paymentDetails }
         );
 
-        // Send notifications
-        notificationService.sendOrderStatus(userId, orderData.orderId, 'placed')
-          .catch(notifErr => console.error('Failed to send order placed notification:', notifErr));
-        notificationService.sendAdminOrderArrived(orderData.orderId)
-          .catch(notifErr => console.error('Failed to send order arrived notification:', notifErr));
+        if (isNewOrder) {
+          // Send notifications
+          notificationService.sendOrderStatus(userId, orderData.orderId, 'placed')
+            .catch(notifErr => console.error('Failed to send order placed notification:', notifErr));
+          notificationService.sendAdminOrderArrived(orderData.orderId)
+            .catch(notifErr => console.error('Failed to send order arrived notification:', notifErr));
+        }
 
         return responseHelper.sendSuccess(res, 201, 'Order created and payment verified successfully', {
           orderId: orderData.orderId,
