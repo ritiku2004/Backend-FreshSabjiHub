@@ -11,10 +11,19 @@ const sendSMS = async (mobileNumber, otp) => {
         const recipient = `91${mobileNumber}`;
 
         const response = await axios.post(
-            'https://official.technovicsolutions.com/api/v1/messages/send',
+            'https://official.technovicsolutions.com/api/v1/messages/template',
             {
                 phone: recipient,
-                message: `Your FreshSabjiHub verification code is: *${otp}*\n\nThis code will expire in 5 minutes.\n\nDo not share this code with anyone.`
+                template_name: 'login_verification_otp',
+                language: 'en',
+                variables: [String(otp)],
+                button_variables: [
+                    {
+                        index: 0,
+                        sub_type: 'url',
+                        text: String(otp)
+                    }
+                ]
             },
             {
                 headers: {
